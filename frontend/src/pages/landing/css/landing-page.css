@@ -1,0 +1,33 @@
+.blurry-dot{
+    width: 700px;
+    height: 60%;
+    position: absolute;
+    background-image: linear-gradient( to right, rgb(27 231 255/50%) 60% ,  rgba(19, 106, 255, 0.6) 40% );
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    opacity: .2;
+    filter: blur(100px);
+}
+
+.feature-card{
+    transition: all .3s ease;
+}
+
+.feature-card:hover{
+    transform: scale(1.04);
+}
+
+.how-works-dot{
+    width: 750px;
+    height: 150px;
+    background-color: #00bdad;
+    z-index: -1;
+    opacity: .3;
+    filter: blur(180px);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+}

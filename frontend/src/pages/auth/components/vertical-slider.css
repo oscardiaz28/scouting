@@ -1,0 +1,47 @@
+.multi-column-slider {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .columns-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    height: 100%;
+  }
+
+  .column{
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    pointer-events: none;
+  }
+  
+  .column::-webkit-scrollbar{
+    display: none;
+  }
+
+  img{
+    height: 350px;
+    object-fit: cover;
+  }
+  
+  .fade-top,
+  .fade-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .fade-top {
+    top: 0;
+    background: linear-gradient(to bottom, rgb(16, 16, 16), transparent);
+  }
+  
+  .fade-bottom {
+    bottom: 0;
+  }
+  
