@@ -1,7 +1,8 @@
 import { Bell, LogOut, Search, User } from "lucide-react"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Logo } from "./Logo"
+import { useAuthStore } from "../../store/useAuthStore"
 
 export const Navbar = () => {
 
@@ -14,24 +15,34 @@ export const Navbar = () => {
 
 const DesktopNavbar = () => {
     const [openDropdownUser, setOpenDropdownUser] = useState(false)
+    const navigate = useNavigate()
     
     return (
         <div className="border-b border-[#2c2c2c]/70 bg-[#111]/30 backdrop-blur-xl fixed w-full z-50 top-0 left-0">
             <nav className="w-full h-[70px] flex items-center justify-between max-w-[1300px] px-4 mx-auto">
                 <Logo />
                 <div className="flex items-center justify-between gap-3">
-                    <button className="cursor-pointer hover:bg-[#393939] w-9 h-9 flex items-center justify-center rounded-full">
-                        <Search className="w-4 h-4" />
-                    </button>
-                    <button className="cursor-pointer hover:bg-[#393939] w-9 h-9 flex items-center justify-center rounded-full">
-                        <Bell className="w-4 h-4" />
-                    </button>
-                    <button 
-                    onClick={ () => setOpenDropdownUser(prev => !prev) }
-                    className="cursor-pointer hover:bg-[#393939] w-9 h-9 flex items-center justify-center rounded-full relative">
-                        <User className="w-4 h-4" />
-                        <DropdownMenuUser open={openDropdownUser} />
-                    </button>
+                    
+                         <button 
+                        onClick={ () => {
+                            // setOpenDropdownUser(prev => !prev)
+                            navigate("/login")
+                        } }
+                        className="cursor-pointer bg-[#393939] flex items-center justify-center relative p-2 text-sm px-3 rounded-md border-1 border-white/20">
+                            {/* <User className="w-4 h-4" /> */}
+                            Iniciar Sesión
+                            {/* <DropdownMenuUser open={openDropdownUser} /> */}
+                        </button>
+                        <button 
+                        onClick={ () => {
+                            navigate("/signup")
+                        } }
+                        className="cursor-pointer bg-white text-zinc-900 font-semibold flex items-center justify-center relative p-2 text-sm px-3 rounded-md">
+                            {/* <User className="w-4 h-4" /> */}
+                            Registrarse
+                            {/* <DropdownMenuUser open={openDropdownUser} /> */}
+                        </button>
+                    
                 </div>
             </nav>
         </div>

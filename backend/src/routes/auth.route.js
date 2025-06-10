@@ -4,6 +4,6 @@ import { checkAuth } from '../middlewares/auth.middleware.js'
 
 export const authRoutes = express.Router()
 
-authRoutes.get("/login", login)
+authRoutes.post("/login", login)
 authRoutes.post("/logout", logout)
 authRoutes.get("/verify", checkAuth, verify)

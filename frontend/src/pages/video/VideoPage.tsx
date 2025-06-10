@@ -38,7 +38,7 @@ export const VideoPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {videos.map( video => (
-            <div className="overflow-hidden rounded-md border-1 border-gray-600 shadow-md">
+            <div key={video.description} className="overflow-hidden rounded-md border-1 border-gray-600 shadow-md">
               <video src="/videos/train.mp4" ></video>
               <div className="p-4 flex flex-col gap-3">
                 <div className="flex items-center justify-between">

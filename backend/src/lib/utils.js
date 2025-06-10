@@ -49,10 +49,13 @@ export const bufferToStream = (buffer) => {
 export const uploadToCloudinary = (fileBuffer) => {
     return new Promise( (resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
-            {folder: 'videos'},
+            {
+                resource_type: "video",
+                folder: 'videos'
+            },
             (error, result) => {
                 if(error) return reject(error)
-                resolve(result.secure_url)
+                resolve({secure_url: result.secure_url, public_id: result.public_id})
             }
         );
         /**
@@ -62,4 +65,9 @@ export const uploadToCloudinary = (fileBuffer) => {
          */
         bufferToStream(fileBuffer).pipe(uploadStream) 
     })
+}
+
+
+export const random = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }

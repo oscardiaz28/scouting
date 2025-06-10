@@ -1,13 +1,15 @@
-import { ArrowRight, Bell, Menu, Search, Upload } from 'lucide-react'
+import { ArrowRight, Bell, LogOut, Menu, Search, Upload } from 'lucide-react'
 import React, { Dispatch, SetStateAction } from 'react'
 import { useSidebarState } from '../../../context/SidebarProvider'
 import { UploadVideo } from '../../../components/common/UploadVideo'
+import { useAuthStore } from '../../../store/useAuthStore'
 
 export const DashboardHeader = ( {showSidebar, setShowSidebar} : {
     showSidebar: boolean, setShowSidebar: Dispatch<SetStateAction<boolean>>
 } ) => {
 
     const {setShowMenu} = useSidebarState()
+    const {logout} = useAuthStore()
 
     return (
         <div className="flex items-center justify-between px-8 h-[70px]">
@@ -34,6 +36,9 @@ export const DashboardHeader = ( {showSidebar, setShowSidebar} : {
                 <Bell className="cursor-pointer w-5 h-5" />
                 <button className="w-9 h-9 bg-[#474747] rounded-full flex items-center justify-center cursor-pointer">
                     <p>S</p>
+                </button>
+                <button onClick={ () => logout() } className='cursor-pointer'>
+                    <LogOut className='w-5' />
                 </button>
             </div>
         </div>

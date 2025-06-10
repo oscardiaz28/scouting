@@ -13,9 +13,11 @@ const videoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    video_public_id: {
+        type: String
+    },
     observaciones: {
-        type: String,
-        required: true
+        type: String
     },
     fecha: {
         type: Date,
