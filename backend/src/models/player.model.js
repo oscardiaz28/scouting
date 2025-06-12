@@ -22,21 +22,23 @@ const playerSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: {
-            values: ["Delantero", "Defensa", "Mediocampista", "Arquero"],
+            values: ["delantero", "defensa", "mediocampista", "arquero"],
             message: "Posición Inválida"
         }
     },
     edad: {
-        type: String,
+        type: Number,
         required: true
     },
     partidos: {
         type: Number,
-        required: false
+        required: false,
+        default: 0
     },
     goles: {
         type: Number,
-        required: false
+        required: false,
+        default: 0
     },
     habilidad_destacada: {
         type: String,

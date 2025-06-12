@@ -37,7 +37,6 @@ body {
     border-radius: 1rem;
     border: 1px solid #27272A;
     width: 100%;
-    max-width: 520px;
 }
 
 /* HTML: <div class="loader"></div> */

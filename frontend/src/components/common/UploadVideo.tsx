@@ -28,7 +28,7 @@ export const UploadVideo = ( {trigger} : Props ) => {
         </div>
         { (open && !analyzing ) && (
             <div className="absolute modal-overlay z-50">
-                <div className="modal-container p-6 px-8 relative flex flex-col gap-6">
+                <div className="modal-container max-w-lg p-6 px-8 relative flex flex-col gap-6">
 
                     <div className="">
                         <button type="button" onClick={ () => setOpen(false) } className="absolute top-4 right-4" >

@@ -30,7 +30,7 @@ export const addPlayer = async (req, res) => {
     const {dni, nombre, apellido, posicion, edad, partidos, goles} = req.body || {}
     try {
         const existPlayer = await Player.findOne({dni})
-        if(existPlayer) return res.status(400).json({message: "El jugador ya esta registrado"})
+        if(existPlayer) return res.status(400).json({message: "El jugador ya esta registrado, ingrese otro DNI"})
 
         const player = new Player({
             dni, nombre, apellido, posicion, edad, partidos, goles
