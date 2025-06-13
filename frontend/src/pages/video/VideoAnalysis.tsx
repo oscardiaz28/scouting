@@ -1,5 +1,9 @@
 import { Download, Share } from "lucide-react"
-import { Bar, BarChart, Line, LineChart, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { useEffect, useState } from "react"
+import { Bar, BarChart, Cell, Legend, Line, LineChart, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { axiosInstance } from "../../lib/axios";
+import { useParams } from "react-router-dom";
+import { capitalize } from "../../utils/utils";
 
 const demoData = {
   habilidades: [
@@ -61,7 +65,69 @@ const demoData = {
   ]
 }
 
+interface RadarStats {
+  tecnica: number;
+  resistencia: number;
+  fuerza: number;
+  visionJuego: number;
+}
+
+interface Distribucion {
+  [key: string]: number
+}
+
+interface Stat {
+  pasesCompletados: number;
+  regates: number;
+  tiros: number;
+  intercepciones: number;
+  faltasCometidas: number;
+  asistencias: number;
+  goles: number;
+  duelosGanados: number;
+  recuperaciones: number;
+  radar: RadarStats,
+  speed_max: number;
+  distancia_recorrida: number;
+  sprints: number;
+  distribucionPases: Distribucion,
+  distribucionTiros: Distribucion
+}
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
+const tirosLabels: Record<string, string> = {
+  dentroArea: "Dentro del Area",
+  fueraArea: "Fuera del Area",
+  cabeza: "De Cabeza",
+  pieIzquierdo: "Pie Izquierdo",
+   pieDerecho: "Pie Derecho"
+}
+
 export const VideoAnalysis = () => {
+
+  const { id } = useParams<{ id: string }>()
+  const [stats, setStats] = useState<Stat>()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const resp = await axiosInstance.get(`/videos/${id}`)
+        setStats(resp.data)
+      } catch (err) {
+        console.log("Error al obtener stats")
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchStats()
+  }, [id])
+
+  if (loading) {
+    return <h1>Loading</h1>
+  }
+
   return (
     <div className="">
 
@@ -92,7 +158,12 @@ export const VideoAnalysis = () => {
           <div className="p-4 bg-[#1A1C1E] rounded-md h-[350px]">
             <h3 className="text-xl font-bold mb-6 text-white">Acciones Realizadas</h3>
             <ResponsiveContainer width="100%" height="85%">
-              <BarChart data={demoData.acciones}>
+              <BarChart data={[
+                { tipo: "Pases", cantidad: stats?.pasesCompletados },
+                { tipo: "Regates", cantidad: stats?.regates },
+                { tipo: "Tiros", cantidad: stats?.tiros },
+                { tipo: "Intercepciones", cantidad: stats?.intercepciones }
+              ]}>
                 <XAxis dataKey="tipo" />
                 <YAxis />
                 <Tooltip />
@@ -103,14 +174,34 @@ export const VideoAnalysis = () => {
 
           {/* Line Chart */}
           <div className="p-4 bg-[#1A1C1E] rounded-m h-[350px]">
-            <h2 className="text-xl font-semibold mb-6 text-white">Velocidad Durante la Jugada</h2>
+            <h2 className="text-xl font-semibold mb-6 text-white">Distribución de Pases</h2>
             <ResponsiveContainer width="100%" height="90%">
-              <LineChart data={demoData.velocidad}>
-                <XAxis dataKey="tiempo" />
-                <YAxis />
+              <PieChart >
+                <Pie
+                  data={Object.entries(stats!.distribucionPases).map(([Key, value]) => ({
+                    name: Key, 
+                    value
+                  }) )}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={100}
+                  fill="#00bcd4"
+                >
+                  {
+                    Object.entries(stats!.distribucionTiros).map( (_, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))
+                  }
+                </Pie>
                 <Tooltip />
-                <Line type="monotone" dataKey="velocidad" stroke="#ff7300" />
-              </LineChart>
+                <Legend 
+                 layout="vertical"
+                  verticalAlign="middle"
+                  align="right"
+                />
+              </PieChart>
             </ResponsiveContainer>
           </div>
 
@@ -137,7 +228,9 @@ export const VideoAnalysis = () => {
             <div className="p-6 pt-0 h-[350px]">
               <h3 className="text-xl font-bold mb-4 text-white">Resultados</h3>
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={demoData.habilidades}>
+                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={
+                  Object.entries(stats!.radar).map(([Key, value]) => ({ subject: capitalize(Key), A: value, fullMark: 100 }))
+                }>
                   <PolarGrid stroke="#2A2E39" />
                   <PolarAngleAxis dataKey="subject"
                     stroke="#ffffff"
@@ -148,7 +241,7 @@ export const VideoAnalysis = () => {
                     tick={{ fill: '#444', fontSize: 10 }}
                     axisLine={false}
                     tickLine={false} />
-                  <Radar name="skills" dataKey="B" stroke="#20619E" fill="#21405D"
+                  <Radar name="skills" dataKey="A" stroke="#20619E" fill="#21405D"
                     dot={{ stroke: '#00C8FF', strokeWidth: 2, r: 3 }}
                     fillOpacity={0.3} />
                 </RadarChart>
@@ -158,24 +251,36 @@ export const VideoAnalysis = () => {
 
           {/* pie chart */}
           <div className="bg-[#1A1C1E] p-6 pt-4 rounded-md h-[350px]">
-            <h2 className="text-xl font-semibold mb-6 text-white">Posición en el Campo</h2>
+            <h2 className="text-xl font-semibold mb-6 text-white">Distribución de Tiros</h2>
             <ResponsiveContainer width="100%" height="90%">
               <PieChart >
                 <Pie
-                  data={demoData.zonasCampo}
-                  dataKey="tiempo"
-                  nameKey="zona"
+                  data={Object.entries(stats!.distribucionTiros).map(([Key, value]) => ({
+                    name: tirosLabels[Key] || Key, 
+                    value
+                  }) )}
+                  dataKey="value"
+                  nameKey="name"
                   cx="50%"
                   cy="50%"
                   outerRadius={100}
                   fill="#00bcd4"
-                  label
-                />
+                >
+                  {
+                    Object.entries(stats!.distribucionTiros).map( (_, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))
+                  }
+                </Pie>
                 <Tooltip />
+                <Legend 
+                 layout="vertical"
+                  verticalAlign="middle"
+                  align="right"
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
-
 
         </div>
 

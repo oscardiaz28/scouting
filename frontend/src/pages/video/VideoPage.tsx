@@ -1,23 +1,18 @@
 import { Check, RefreshCw, Search } from "lucide-react"
 import { Link } from "react-router-dom"
-
-const videos = [
-  {
-    description: "Entrenamiento realizado ayer",
-    fecha: "17 Abril, 2025",
-    player: "John Doe",
-    state: "in-process"
-  },
-  {
-    description: "Partido de practica con Chelsea FC",
-    fecha: "10 Abril, 2025",
-    player: "Pedro Gomez",
-    state: "in-completed"
-  }
-]
+import { useVideoStore } from "../../store/useVideoStore"
+import { useEffect } from "react"
+import { formatterDate } from "../../utils/utils"
 
 export const VideoPage = () => {
 
+  const { videos, fetchVideos } = useVideoStore()
+
+  console.log(videos)
+
+  useEffect(() => {
+    fetchVideos()
+  }, [])
 
   return (
     <div className="">
@@ -38,39 +33,20 @@ export const VideoPage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
           {videos.map( video => (
-            <div key={video.description} className="overflow-hidden rounded-md border-1 border-gray-600 shadow-md">
-              <video src="/videos/train.mp4" ></video>
+            <div key={video.videoId._id} className="overflow-hidden rounded-md border-1 border-gray-600 shadow-md">
+              <video src={video.videoId.url_video} ></video>
               <div className="p-4 flex flex-col gap-3">
                 <div className="flex items-center justify-between">
-                  <Link to={"/dashboard/videos/23422"} className="hover:underline">{video.description}</Link>
-                  <p className="text-sm text-gray-300">{video.fecha}</p>
+                  <Link to={"/dashboard/videos/"+video.videoId._id} className="hover:underline">{video.videoId.descripcion}</Link>
+                  <p className="text-sm text-gray-300">{formatterDate(video.videoId.fecha)}</p>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <Link to={"/dashboard/players/1231451"} className="inline-block p-1 px-3 text-sm bg-[#2266c5] rounded-full hover:bg-[#2266c5d6]">{video.player}</Link>
-                  {video.state == "in-process" ? (
-                      <div className="rounded-full bg-[#FFFAC6] 
-                      flex items-center gap-2
-                      text-xs font-semibold text-[#915700] p-1 px-3">
-                        <RefreshCw className="w-3 h-3" />
-                        En Proceso
-                      </div>
-                  ) : (
-                      <div className="rounded-full bg-[#CCFCF2] 
-                      flex items-center gap-2
-                      text-xs font-semibold text-[#076E5D] p-1 px-3">
-                        <Check className="w-3 h-3" />
-                        Completado
-                      </div>
-                  ) }
+                <div>
+                  <p className="bg-[#2266C5] inline-block rounded-full p-1 px-3 text-sm">{video.playerId.nombre} {video.playerId.apellido}</p>
                 </div>
-
               </div>
             </div>
           ) )}
-
         </div>
-
     </div>
   )
 }

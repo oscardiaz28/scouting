@@ -22,12 +22,8 @@ const videoSchema = new mongoose.Schema({
     fecha: {
         type: Date,
         required: true
-    },
-    playerId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Player",
-        required: true
     }
+
 })
 
 export const Video = mongoose.model('Video', videoSchema);

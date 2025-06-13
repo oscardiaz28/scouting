@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 
-const statSchema = new mongoose.Schema({    
+const statSchema = new mongoose.Schema({
     videoId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Video",
+        required: true
+    },
+
+    playerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Player",
         required: true
     },
     pasesCompletados: Number,
@@ -11,6 +17,11 @@ const statSchema = new mongoose.Schema({
     tiros: Number,
     intercepciones: Number,
     faltasCometidas: Number,
+    asistencias: Number,
+    duelosGanados: Number,
+    recuperaciones: Number,
+    goles: Number,
+
     radar: {
         tecnica: Number,
         resistencia: Number,
@@ -18,14 +29,24 @@ const statSchema = new mongoose.Schema({
         decisiones: Number,
         visionJuego: Number
     },
+
     speed_max: Number,
     distancia_recorrida: Number,
-    sprints: Number
-    // zona_iniciacion: Number,
-    // zona_defensiva: Number,
-    // zona_creacion: Number,
-    // zona_ataque: Number,
-    // zona_finalizacion: Number
+    sprints: Number,
+    distribucionPases: {
+        cortos: Number,
+        largos: Number,
+        filtrados: Number,
+        centros: Number
+    },
+
+    distribucionTiros: {
+        dentroArea: Number,
+        fueraArea: Number,
+        cabeza: Number,
+        pieIzquierdo: Number,
+        pieDerecho: Number
+    },
 })
 
 export const Stat = mongoose.model("Stat", statSchema)
