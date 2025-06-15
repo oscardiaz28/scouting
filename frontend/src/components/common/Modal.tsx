@@ -1,9 +1,8 @@
 import { X } from "lucide-react";
-import React, { Dispatch, FormEvent, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Player, usePlayerStore } from "../../store/usePlayerStore";
 import toast from "react-hot-toast";
-import { axiosInstance } from "../../lib/axios";
 
 interface ModalProps {
     showModal: boolean,
@@ -11,7 +10,7 @@ interface ModalProps {
     selectedPlayer: Player | null
 }
 
-export const Modal = ({ showModal, setShowModal, selectedPlayer }: ModalProps) => {
+export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
 
     const [error, setError] = useState(null)
     const { addPlayer, setSelectedPlayer, editPlayer } = usePlayerStore()

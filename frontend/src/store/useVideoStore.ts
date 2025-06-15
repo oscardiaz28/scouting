@@ -9,7 +9,7 @@ interface VideoStoreState{
     fetchVideos: () => Promise<void>
 }
 
-export const useVideoStore = create<VideoStoreState>( (set, get) => ({
+export const useVideoStore = create<VideoStoreState>( (set) => ({
     isFetchingVideos: true,
     videos: [],
 

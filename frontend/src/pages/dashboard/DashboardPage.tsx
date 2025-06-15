@@ -1,4 +1,3 @@
-import { UserCheck, UserPlus, Video, Zap } from "lucide-react"
 import {
   BarChart,
   Bar,
@@ -61,7 +60,7 @@ export const DashboardPage = () => {
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                     labelLine={false}
                   >
-                    {tiposjugadas.map((entry, index) => (
+                    {tiposjugadas.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

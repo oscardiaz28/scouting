@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect } from "react"
 import { Logo } from "../../../components/common/Logo"
 import { Link, useLocation } from "react-router-dom"
-import { ChartBarIcon, ChevronRight, Home, MessageCircle, Settings, User, Video, X } from "lucide-react"
+import { ChartBarIcon, ChevronRight, Home, MessageCircle, User, Video, X } from "lucide-react"
 import { useSidebarState } from "../../../context/SidebarProvider"
 import { isPathActive } from "../../../utils/utils"
 

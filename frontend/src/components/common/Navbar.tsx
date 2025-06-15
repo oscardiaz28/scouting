@@ -1,8 +1,6 @@
-import { Bell, LogOut, Search, User } from "lucide-react"
-import { useState } from "react"
+import { LogOut, User } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { Logo } from "./Logo"
-import { useAuthStore } from "../../store/useAuthStore"
 
 export const Navbar = () => {
 
@@ -14,7 +12,6 @@ export const Navbar = () => {
 }
 
 const DesktopNavbar = () => {
-    const [openDropdownUser, setOpenDropdownUser] = useState(false)
     const navigate = useNavigate()
     
     return (

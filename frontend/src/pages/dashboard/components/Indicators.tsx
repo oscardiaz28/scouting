@@ -1,6 +1,6 @@
 import { UserCheck, UserPlus, Video } from "lucide-react"
 import { IndicatorItem } from "./IndicatorItem"
-import { JSX, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { axiosInstance } from "../../../lib/axios"
 import { SkeletonIndicators } from "./SkeletonIndicators"

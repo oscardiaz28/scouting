@@ -1,6 +1,6 @@
-import { Download, Share } from "lucide-react"
+import { Share } from "lucide-react"
 import { useEffect, useState } from "react"
-import { Bar, BarChart, Cell, Legend, Line, LineChart, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Cell, Legend, Pie, PieChart, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip} from "recharts"
 import { axiosInstance } from "../../lib/axios";
 import { Link, useParams } from "react-router-dom";
 import { capitalize, formatterDate } from "../../utils/utils";
@@ -9,65 +9,6 @@ import { StatPasesPieChart } from "./components/StatPasesPieChart";
 import { ProgressBarAttribute } from "./components/ProgressBarAttribute";
 import toast from "react-hot-toast";
 
-const demoData = {
-  habilidades: [
-    {
-      subject: "Técnica",
-      A: 80,
-      B: 90,
-      fullMark: 100
-    },
-    {
-      subject: "Velocidad",
-      A: 70,
-      B: 80,
-      fullMark: 100
-    },
-    {
-      subject: "Resistencia",
-      A: 86,
-      B: 70,
-      fullMark: 100
-    },
-    {
-      subject: "Fuerza",
-      A: 99,
-      B: 70,
-      fullMark: 100
-    },
-    {
-      subject: "Toma de Decisiones",
-      A: 85,
-      B: 80,
-      fullMark: 100
-    },
-    {
-      subject: "Visión de Juego",
-      A: 65,
-      B: 95,
-      fullMark: 100
-    }
-  ],
-  acciones: [
-    { tipo: "Pases completados", cantidad: 25 },
-    { tipo: "Regates", cantidad: 12 },
-    { tipo: "Tiros", cantidad: 4 },
-    { tipo: "Intercepciones", cantidad: 7 },
-    { tipo: "Faltas cometidas", cantidad: 2 }
-  ],
-  velocidad: [
-    { tiempo: 0, velocidad: 3 },
-    { tiempo: 1, velocidad: 5 },
-    { tiempo: 2, velocidad: 7 },
-    { tiempo: 3, velocidad: 6 },
-    { tiempo: 4, velocidad: 8 }
-  ],
-  zonasCampo: [
-    { zona: "Defensiva", tiempo: 40 },
-    { zona: "Media", tiempo: 30 },
-    { zona: "Ofensiva", tiempo: 30 }
-  ]
-}
 
 interface RadarStats {
   tecnica: number;
@@ -208,13 +149,6 @@ export const VideoAnalysis = () => {
           <Share />
           <p>Compartir Estadísticias</p>
         </div>
-        {/* 
-        <div className=" bg-[#127055] rounded-md flex items-start gap-4 p-3 px-7 cursor-pointer 
-            hover:bg-[#0a634a]">
-          <Download />
-          <p>Descargar Reporte de Analisis</p>
-        </div>
-         */}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[3fr_2fr] mt-8 gap-6">

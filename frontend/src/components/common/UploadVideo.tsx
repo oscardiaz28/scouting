@@ -1,5 +1,5 @@
-import { Circle, Plus, Upload, X } from "lucide-react"
-import { ReactNode, useEffect, useState } from "react"
+import { Upload, X } from "lucide-react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { usePlayerStore } from "../../store/usePlayerStore"
 import { useForm } from "react-hook-form"
@@ -11,11 +11,10 @@ interface Props{
     setShowModal: (value: boolean) => void
 }
 
-export const UploadVideo = ( {showModal, setShowModal} : Props ) => {
+export const UploadVideo = ( { setShowModal} : Props ) => {
 
-    const { register, handleSubmit, formState: {errors}, reset } = useForm()
+    const { register, handleSubmit, formState: {errors} } = useForm()
 
-    const [open, setOpen] = useState(false)
     const [analyzing, setAnalyzing] = useState(false)
     const navigate = useNavigate();
     const {players, fetchAllPlayers} = usePlayerStore()
@@ -152,7 +151,7 @@ export const UploadVideo = ( {showModal, setShowModal} : Props ) => {
             <div className="modal-container max-w-lg p-6 px-8 relative flex flex-col gap-7">
 
                 <div className="">
-                    <button type="button" onClick={ () => setOpen(false) } className="absolute top-4 right-4" >
+                    <button type="button" onClick={ () => setShowModal(false) } className="absolute top-4 right-4" >
                         <X className="w-5 h-5 cursor-pointer" />
                     </button>
                     <h2 className="flex items-center gap-2">

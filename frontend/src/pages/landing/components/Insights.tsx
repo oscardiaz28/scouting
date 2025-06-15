@@ -1,4 +1,4 @@
-import {  PieChart, LineChart, ScatterChart, AreaChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Pie, Line, Area, Scatter, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
+import {  PieChart, Cell, Tooltip, ResponsiveContainer, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
 
 const demoData = {
     habilidades: [
@@ -108,7 +108,7 @@ export const Insights = () => {
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                       labelLine={false}
                     >
-                      {demoData.tiposjugadas.map((entry, index) => (
+                      {demoData.tiposjugadas.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>

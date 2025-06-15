@@ -1,5 +1,5 @@
-import { ArrowRight, Bell, LogOut, Menu, Search, Upload } from 'lucide-react'
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import { ArrowRight, LogOut, Menu, Upload } from 'lucide-react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useSidebarState } from '../../../context/SidebarProvider'
 import { UploadVideo } from '../../../components/common/UploadVideo'
 import { useAuthStore } from '../../../store/useAuthStore'
@@ -21,22 +21,17 @@ export const DashboardHeader = ({ showSidebar, setShowSidebar }: {
 
                     <button
                         onClick={() => {
-                            // setOpenDropdownUser(prev => !prev)
                             navigate("/login")
                         }}
                         className="cursor-pointer bg-[#393939] flex items-center justify-center relative p-2 text-sm px-3 rounded-md border-1 border-white/20">
-                        {/* <User className="w-4 h-4" /> */}
                         Iniciar Sesión
-                        {/* <DropdownMenuUser open={openDropdownUser} /> */}
                     </button>
                     <button
                         onClick={() => {
                             navigate("/signup")
                         }}
                         className="cursor-pointer bg-white text-zinc-900 font-semibold flex items-center justify-center relative p-2 text-sm px-3 rounded-md">
-                        {/* <User className="w-4 h-4" /> */}
                         Registrarse
-                        {/* <DropdownMenuUser open={openDropdownUser} /> */}
                     </button>
 
                 </div>
@@ -52,7 +47,6 @@ export const DashboardHeader = ({ showSidebar, setShowSidebar }: {
                     <ArrowRight className={`transform transition-transform duration-300 ${showSidebar ? 'rotate-180' : 'rotate-0'} w-4 h-4`} />
                 </div>
                 <Menu onClick={() => setShowMenu(true)} className="cursor-pointer md:hidden" />
-                {/* <h2 className="text-lg font-semibold">Dashboard</h2> */}
             </div>
 
             <div className="flex items-center gap-6">

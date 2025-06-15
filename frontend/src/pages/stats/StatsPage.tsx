@@ -1,5 +1,4 @@
-import { Volleyball } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import {
     RadarChart,
@@ -13,8 +12,6 @@ import {
     Bar,
     PieChart,
     Pie,
-    LineChart,
-    Line,
     ResponsiveContainer,
     Cell
 } from "recharts";
@@ -79,14 +76,6 @@ export interface StatsProps {
 }
 
 export default function StatsPage() {
-
-    const rendimientoPorFecha = [
-        { fecha: "01/03", promedio: 70 },
-        { fecha: "05/03", promedio: 74 },
-        { fecha: "10/03", promedio: 69 },
-        { fecha: "15/03", promedio: 76 },
-        { fecha: "20/03", promedio: 80 }
-    ];
 
     const [stats, setStats] = useState<StatsProps | null>(null)
     const [loading, setLoading] = useState(true)
@@ -162,7 +151,6 @@ export default function StatsPage() {
                 </div>
             );
         }
-
         return null;
     };
 
@@ -248,7 +236,7 @@ export default function StatsPage() {
                                 label={({ edad, percent }) => `+${edad + " años"} ${(percent * 100).toFixed(0)}%`}
                                 labelLine={true}
                             >
-                                {distribucionEdad.map((entry, index) => (
+                                {distribucionEdad.map((_, index) => (
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>

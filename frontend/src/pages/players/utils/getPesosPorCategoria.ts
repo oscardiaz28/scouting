@@ -1,6 +1,3 @@
-type Posicion = "delantero" | "mediocampista" | "defensa" | "arquero";
-type Categoria = "Pase" | "Regate" | "Defensa" | "Fisico";
-
 export const getPesosPorCategoria = (posicion: string, categoria: string) => {
     
   const map : any = {

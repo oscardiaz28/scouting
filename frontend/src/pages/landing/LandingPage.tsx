@@ -1,5 +1,4 @@
 import { Navbar } from "../../components/common/Navbar"
-import { VerticalSlider } from "../auth/components/VerticalSlider"
 import { Features } from "./components/Features"
 import { HowWorks } from "./components/HowWorks"
 import { Insights } from "./components/Insights"
@@ -14,7 +13,6 @@ export const LandingPage = () => {
             <div className="mt-[70px]"></div>
 
             <header>
-                {/* <VerticalSlider /> */}
             </header>
 
             <main className="max-w-5xl mx-auto">

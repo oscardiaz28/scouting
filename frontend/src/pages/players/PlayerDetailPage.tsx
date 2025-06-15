@@ -1,13 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { axiosInstance } from '../../lib/axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { StatSection } from './components/StatSection'
 import { PlayerSection } from './components/PlayerSection'
 import { Player } from '../../store/usePlayerStore'
 import { Download, Share } from 'lucide-react'
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
 
 interface Radar {
   tecnica: number;
@@ -156,7 +154,7 @@ export const PlayerDetailPage = () => {
     .then(() => {
       toast.success("Enlace para compartir estadisticas copiado")
     })
-    .catch((err) => {
+    .catch(() => {
       toast.error("Error al copiar enlace")
     })
   }
