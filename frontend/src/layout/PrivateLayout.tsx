@@ -2,15 +2,20 @@ import { Outlet } from "react-router-dom"
 import { Sidebar } from "../pages/dashboard/components/Sidebar"
 import { useState } from "react"
 import { DashboardHeader } from "../pages/dashboard/components/DashboardHeader"
+import { useAuthStore } from "../store/useAuthStore"
 
 export const PrivateLayout = () => {
 
   const [showSidebar, setShowSidebar] = useState(true)
+  const { authUser } = useAuthStore()
 
   return (
     <div className="bg-[#111311] w-full flex h-screen overflow-hidden relative">
-      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} 
-        />
+      {authUser && (
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} 
+                />
+      )}
+      
       <div className="flex-1 overflow-y-auto scrollbar">
         <div className="">
           <DashboardHeader showSidebar={showSidebar} setShowSidebar={setShowSidebar} />

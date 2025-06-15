@@ -22,8 +22,12 @@ const videoSchema = new mongoose.Schema({
     fecha: {
         type: Date,
         required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
-
 })
 
 export const Video = mongoose.model('Video', videoSchema);

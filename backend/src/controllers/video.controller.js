@@ -1,12 +1,13 @@
 import cloudinary from "../lib/cloudinary.js"
-import { random, uploadToCloudinary } from "../lib/utils.js"
+import { random, randomSkill, uploadToCloudinary } from "../lib/utils.js"
 import { Player } from "../models/player.model.js"
 import { Stat } from "../models/stat.model.js"
 import { Video } from "../models/video.model.js"
 
 export const getAll = async (req, res) => {
+    const {user} = req
     try{
-        const videos = await Stat.find()
+        const videos = await Stat.find({userId: user._id})
         .select(["videoId", "playerId", "-_id"])
         .populate({
             path: 'videoId',
@@ -39,9 +40,7 @@ export const getOne = async (req, res) => {
             model: "Player",
             select: ["_id", "nombre", "apellido", "posicion"]
         }).lean()
-
         if(!stats) return res.status(400).json({message: "Video no encontrado"})
-
         res.json(stats)
     }catch(err){
         console.log(`Error in getOne in video controller: ${err}`)
@@ -53,6 +52,7 @@ export const getOne = async (req, res) => {
 export const addVideo = async (req, res) => {
     const file = req.file
     const {playerId, nombre, descripcion, fecha} = req.body || {}
+    const {user} = req
     if(!file) return res.status(400).json({message: "El video es obligatorio"})
 
     try{
@@ -69,7 +69,8 @@ export const addVideo = async (req, res) => {
             descripcion, 
             fecha,
             url_video: secure_url,
-            video_public_id: public_id
+            video_public_id: public_id,
+            userId: user._id
         })
 
         const videoSaved = await video.save();
@@ -79,24 +80,31 @@ export const addVideo = async (req, res) => {
             playerId: player._id,
             pasesCompletados: random(10, 30),
             regates: random(5, 20),
-            tiros: random(0, 10),
-            intercepciones: random(1, 10),
-            faltasCometidas: random(0, 5),
+            // tiros: random(0, 10),
+            intercepciones: random(15, 25),
+            faltasCometidas: random(5, 25),
             asistencias: random(0, 5),
-            goles: random(0, 5),
-            duelosGanados: random(3, 15),
-            recuperaciones: random(3, 15),
-
+            goles: random(2, 7),
+            duelosGanados: random(9, 15),
+            recuperaciones: random(10, 15),
             speed_max: random(10, 20),
             distancia_recorrida: random(30, 40),
             sprints: random(5, 15),
+            
+            resistencia: random(60, 90),
+            salto: random(60, 90),
+            agresividad: random(60, 90),
+            centros: random(10, 20),
+            definicion: random(70, 80),
+            control_balon: random(70, 90),
+            agilidad: random(70, 90),
 
             radar: {
-                tecnica: random(60, 100),
-                resistencia: random(60, 100),
-                fuerza: random(60, 100),
-                pases_acertados: random(10, 20),
-                visionJuego: random(10, 30)
+                tecnica: random(60, 90),
+                fuerza: random(60, 90),
+                velocidad: random(60, 90),
+                regate: random(60, 90),
+                visionJuego: random(60, 90)
             },
              distribucionPases: {
                 cortos: random(5, 15),
@@ -106,15 +114,20 @@ export const addVideo = async (req, res) => {
             },
             distribucionTiros: {
                 dentroArea: random(0, 5),
-                fueraArea: random(0, 5),
-                cabeza: random(0, 3),
+                fueraArea: random(0, 8),
+                cabeza: random(0, 5),
                 pieIzquierdo: random(0, 5),
                 pieDerecho: random(0, 5)
             },
+            userId: user._id
         })
-
+        const totalTiros = Object.values(stats.distribucionTiros).reduce( (sum, value) => sum + value, 0)
+        stats.tiros = totalTiros
+        
         await stats.save()
+
         player.goles = player.goles + stats.goles
+        player.habilidad_destacada = randomSkill(player.posicion)
         await player.save()
         res.json(videoSaved)
 

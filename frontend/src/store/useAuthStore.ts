@@ -13,6 +13,8 @@ interface AuthState{
     isLoggingIn: boolean,
     isSigningIn: boolean,
     isCheckingAuth: boolean,
+
+    signup: (data: {username: string, email: string, password: string}) => Promise<void>,
     login: ( data: {email: string, password: string} ) => Promise<void>,
     checkAuth: () => Promise<void>,
     logout: () => Promise<void>
@@ -24,6 +26,16 @@ export const useAuthStore = create<AuthState>( (set) => ({
     isLoggingIn: false,
     isSigningIn: false,
     isCheckingAuth: true,
+
+    signup: async (data) => {
+        set({isSigningIn: true})
+        try{
+            await axiosInstance.post("/auth/signup", data)
+        }finally{
+            set({isSigningIn: false})
+        }
+    },
+
     login: async (data : {email: string, password: string}  ) => {
         set({isLoggingIn: true})
         try{

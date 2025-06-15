@@ -10,8 +10,8 @@ const createAdmin = async () => {
         await connectDB()
         const hashedPassword = await hashPassword("1234")
         const user = new User({
-            username: "johndoe",
-            email: "john@gmail.com",
+            username: "pedrogomez",
+            email: "pedro@gmail.com",
             password: hashedPassword
         })
         await user.save()

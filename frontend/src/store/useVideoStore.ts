@@ -10,11 +10,10 @@ interface VideoStoreState{
 }
 
 export const useVideoStore = create<VideoStoreState>( (set, get) => ({
-    isFetchingVideos: false,
+    isFetchingVideos: true,
     videos: [],
 
     fetchVideos: async () => {
-        set({isFetchingVideos: true})
         try{
             const resp = await axiosInstance.get("/videos")
             set({videos: resp.data})

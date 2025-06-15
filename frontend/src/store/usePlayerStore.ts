@@ -12,7 +12,9 @@ export interface Player{
     edad: number,
     partidos: number,
     goles: number,
-    es_prospecto: boolean
+    es_prospecto: boolean,
+    pie_dominante: string,
+    habilidad_destacada: string
 }
 
 interface PlayerRequest{

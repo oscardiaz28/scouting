@@ -48,6 +48,20 @@ const playerSchema = new mongoose.Schema({
         type: Boolean,
         required: false,
         default: false
+    },
+    pie_dominante: {
+        type: String,
+        required: false
+    },
+    activo: {
+        type: Boolean,
+        required: false,
+        default: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, { timestamps: true })
 

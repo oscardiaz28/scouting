@@ -1,47 +1,75 @@
 import { UserCheck, UserPlus, Video } from "lucide-react"
+import { IndicatorItem } from "./IndicatorItem"
+import { JSX, useEffect, useState } from "react"
+import toast from "react-hot-toast"
+import { axiosInstance } from "../../../lib/axios"
+import { SkeletonIndicators } from "./SkeletonIndicators"
 
-const data = [
-    {
-        title: "Ultimos videos analizados",
-        icon: <Video className="text-[#00AABC] w-6 h-6" />,
-        value: 40,
-        stats: 17
-    },
-    {
-        title: "Jugadores Registrados",
-        icon: <UserPlus className="text-[#00AABC] w-6 h-6" />,
-        value: 18,
-        stats: 30
-    },
-    {
-        title: "Jugadores Activos",
-        icon: <UserCheck className="text-[#00AABC] w-6 h-6" />,
-        value: 25,
-        stats: 10
-    },
-    {
-        title: "Jugadores Registrados",
-        icon: <Video  className="text-[#00AABC] w-6 h-6" />,
-        value: 40,
-        stats: 4
-    },
-]
+interface IndicatorsType {
+    activePlayers: number,
+    prospectPlayers: number,
+    registeredPlayers: number,
+    videos: number
+}
+
 
 export const Indicators = () => {
+
+    const [stats, setStats] = useState<IndicatorsType | null>(null)
+    const [fetchLoaded, setFetchLoaded] = useState(true)
+
+    console.log(stats)
+
+    useEffect(() => {
+        const fetchKPI = async () => {
+            try {
+                const resp = await axiosInstance.get("/dashboard")
+                setStats(resp.data)
+            } catch (err) {
+                toast.error("No se ha podido obtener los valores")
+            } finally {
+                setFetchLoaded(false)
+            }
+        }
+        fetchKPI()
+    }, [])
+
+    const indicatorItems = stats ? [
+        {
+            title: "Videos Analizados",
+            icon: <Video className="text-[#00AABC] w-6 h-6" />,
+            stats: stats.videos,
+            value: 5
+        },
+        {
+            title: "Jugadores Registrados",
+            icon: <UserPlus className="text-[#00AABC] w-6 h-6" />,
+            stats: stats.registeredPlayers,
+            value: 15
+        },
+        {
+            title: "Jugadores Activos",
+            icon: <UserCheck className="text-[#00AABC] w-6 h-6" />,
+            stats: stats.activePlayers,
+            value: 10
+        },
+        {
+            title: "Jugadores Prospectos",
+            icon: <Video className="text-[#00AABC] w-6 h-6" />,
+            stats: stats.prospectPlayers,
+            value: 11
+        },
+    ] : []
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {data.map( (info, idx) => (
-                <div key={idx} className=" p-4 px-5 flex items-start justify-between bg-[#1A1C1E] rounded-md">
-                    <div className="flex flex-col items-start gap-2 h-full">
-                        <div className="flex items-center gap-3">
-                            {info.icon}
-                            <p className="text-sm text-gray-300">{info.title}</p>
-                        </div>
-                        <p className="text-3xl font-normal">{info.value}</p>
-                    </div>
-                    <p className="mt-auto border-1 border-emerald-500 bg-emerald-600/60 rounded-full p-1 px-2 text-xs font-semibold">+{info.stats}%</p>
-                </div>
-            ) )}
+            {fetchLoaded ? (
+                <SkeletonIndicators />
+            ) : (
+                indicatorItems.map( (item, idx) => (
+                    <IndicatorItem key={idx} item={item} />
+                ))
+            )}
         </div>
     )
 }

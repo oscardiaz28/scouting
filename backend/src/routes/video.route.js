@@ -12,4 +12,4 @@ const upload = multer({storage: storage})
 videoRoutes.get("/search", checkAuth, searchVideos)
 videoRoutes.get("/", checkAuth, getAll);
 videoRoutes.post("/", checkAuth, upload.single('video'), addVideo)
-videoRoutes.get("/:id", validateObjectId, checkAuth, getOne)
+videoRoutes.get("/:id", validateObjectId, getOne)

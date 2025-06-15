@@ -41,7 +41,7 @@ export const DashboardPage = () => {
         <Indicators />
 
         {/* Bar Chart */}
-        <div className="grid md:grid-cols-[1fr_2fr] gap-5">
+        <div className="grid md:grid-cols-[1fr_2fr] gap-5 mt-9">
 
            {/* Pie chart */}
           <div className=" p-5">
@@ -90,43 +90,6 @@ export const DashboardPage = () => {
 
         </div>
 
-      </div>
-
-      <div className="grid grid-cols-1 gap-3">
-        {/* Table Data */}
-        <div className="w-full overflow-y-auto scrollbar pb-4 bg-[#1A1C1E] p-5 rounded-md">
-          <h2 className="font-bold text-xl mb-6">Actividad Reciente</h2>
-          <table className="w-full table-auto border-collapse rounded-md overflow-hidden">
-            <thead className="bg-[#0f0e0e] rounded-md">
-              <tr className="">
-                <th className="py-3 px-3">Jugador</th>
-                <th className="py-3 px-3">Posición</th>
-                <th className="py-3 px-3">Edad</th>
-                <th className="py-3 px-3">Estado del Analisis</th>
-                <th className="py-3 px-3">Puntaje IA</th>
-                <th className="py-3 px-3">Habilidad Destacada</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="text-center border-b border-b-[#232323] cursor-pointer">
-                <td className="py-4 px-3">John Doe</td>
-                <td className="py-4 px-3">Delantero</td>
-                <td className="py-4 px-3">18</td> 
-                <td className="py-4 px-3">✅ Completado</td>
-                <td className="py-4 px-3">78/100</td>
-                <td className="py-4 px-3">Finalización (92)</td>
-              </tr>
-              <tr className="text-center border-b border-b-[#232323] cursor-pointer">
-                <td className="py-4 px-3">John Doe</td>
-                <td className="py-4 px-3">Delantero</td>
-                <td className="py-4 px-3">18</td>
-                <td className="py-4 px-3">⏳ En Proceso</td>
-                <td className="py-4 px-3">78/100</td>
-                <td className="py-4 px-3">Finalización (92)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
 
     </div>

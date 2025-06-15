@@ -45,12 +45,16 @@ export const Routing = () => {
                     <Route path="/dashboard" element={ <ProtectedRoute><PrivateLayout /></ProtectedRoute> }>
                         <Route index element={ <DashboardPage /> } />    
                         <Route path="videos" element={ <VideoPage /> } />
-                        <Route path="videos/:id" element={<VideoAnalysis />} />
                         <Route path="stats" element={<StatsPage />} />
                         <Route path="players" element={<PlayersPage />} />
-                        <Route path="players/:id" element={<PlayerDetailPage />} />
                         <Route path="assistant" element={<AssistantPage />} />
                     </Route>
+
+                    <Route path="/dashboard" element={<PrivateLayout />}>
+                        <Route path="players/:id" element={<PlayerDetailPage />} />
+                        <Route path="videos/:id" element={<VideoAnalysis />} />
+                    </Route>
+
                 </Routes>      
                 <Toaster />
             </SidebarProvider>  

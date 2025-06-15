@@ -21,12 +21,20 @@ const statSchema = new mongoose.Schema({
     duelosGanados: Number,
     recuperaciones: Number,
     goles: Number,
+    
+    resistencia: Number,
+    salto: Number,
+    agresividad: Number,
+    centros: Number,
+    definicion: Number,
+    control_balon: Number,
+    agilidad: Number,
 
     radar: {
         tecnica: Number,
-        resistencia: Number,
         fuerza: Number,
-        decisiones: Number,
+        velocidad: Number,
+        regate: Number,
         visionJuego: Number
     },
 
@@ -47,6 +55,11 @@ const statSchema = new mongoose.Schema({
         pieIzquierdo: Number,
         pieDerecho: Number
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 })
 
 export const Stat = mongoose.model("Stat", statSchema)

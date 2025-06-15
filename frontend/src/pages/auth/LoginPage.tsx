@@ -1,10 +1,10 @@
-import React from 'react'
 import { Logo } from '../../components/common/Logo'
 import { Image } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useAuthStore } from '../../store/useAuthStore'
+import { Link } from 'react-router-dom'
 
-interface FormData{
+export interface FormData{
   email: string,
   password: string
 }
@@ -49,6 +49,12 @@ export const LoginPage = () => {
             </div>
             <button className='bg-[#FCFBF8] text-[#1c1c1c] w-full font-semibold rounded-md h-9 text-sm cursor-pointer' type='submit'>Iniciar Sesión</button>
           </form>
+
+          <div className='w-full flex items-center justify-center mt-6 text-center'>
+            <Link to={"/signup"} className='block text-base hover:underline'>
+                ¿Aun no tienes una cuenta? Registrate
+            </Link>
+          </div>
 
         </div>
 
