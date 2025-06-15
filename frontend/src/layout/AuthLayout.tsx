@@ -1,10 +1,7 @@
-import { Outlet } from 'react-router-dom'
-import { VerticalSlider } from '../pages/auth/components/VerticalSlider'
 
 export const AuthLayout = () => {
   return (
     <div>
-        {/* <Outlet /> */}
 
         <div className='border-b border-gray-700'>
           <div className='w-full h-[70px] flex items-center justify-between max-w-[1400px] mx-auto px-4'>
@@ -20,8 +17,6 @@ export const AuthLayout = () => {
         </div>
 
         <div>
-          {/* <VerticalSlider /> */}
-          
 
         </div>        
 

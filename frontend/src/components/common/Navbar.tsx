@@ -46,21 +46,3 @@ const DesktopNavbar = () => {
     )
 }
 
-
-const DropdownMenuUser = ( {open} : {open: boolean} ) => {
-    return (
-        <div className={`${open ? "block" : "hidden"} shadow w-[180px] bg-[#2c2c2c] border-1 border-[#1a1a1a] rounded-md absolute top-full right-0 text-sm py-2 px-2`}>
-            <p className="text-nowrap border-b border-gray-500 pb-2 mb-2">Logueado como John</p>
-            <div className="flex flex-col gap-1">
-                <Link to={"/dashboard"} className="py-1 px-2 hover:bg-[#222] flex items-center gap-1 rounded-md px-3">
-                    <User className="w-4" />
-                    <p>Dashboard</p>
-                </Link>
-                <Link to={"/account"} className="py-1 px-2 hover:bg-[#222] flex items-center gap-1 rounded-md px-3">
-                    <LogOut className="w-4" />
-                    <p className="text-nowrap">Cerrar Sesión</p>
-                </Link>
-            </div>
-        </div>
-    )
-}

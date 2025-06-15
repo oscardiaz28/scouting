@@ -1,5 +1,5 @@
 import { Send, Sparkles } from 'lucide-react';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 type ResponseType =
@@ -112,7 +112,7 @@ export const AssistantPage = () => {
                             label={({ posicion, percent }) => `${posicion} ${(percent * 100).toFixed(0)}%`}
                             labelLine={false}
                           >
-                            {currentResponse.data.map((entry, index) => (
+                            {currentResponse.data.map((_, index) => (
                               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                           </Pie>

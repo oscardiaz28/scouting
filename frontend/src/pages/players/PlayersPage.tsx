@@ -1,17 +1,12 @@
-// components/PlayersTable.tsx
-import React, { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Player, usePlayerStore } from "../../store/usePlayerStore"
+import { usePlayerStore } from "../../store/usePlayerStore"
 import { capitalize } from "../../utils/utils"
 import { Modal } from "../../components/common/Modal"
 import { Pen, X } from "lucide-react"
 
-const rowsPerPage = 5
 
 export default function PlayersPage() {
-    // const paginatedPlayers = playersData.slice(page * rowsPerPage, (page + 1) * rowsPerPage)
-    // const [page, setPage] = useState(0)
-    // const totalPages = Math.ceil(playersData.length / rowsPerPage)
     const { players, fetchAllPlayers, setPlayerAsProspecto, deletePlayer, selectedPlayer, setSelectedPlayer } = usePlayerStore()
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
