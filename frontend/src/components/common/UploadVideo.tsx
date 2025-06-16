@@ -42,7 +42,6 @@ export const UploadVideo = ( { setShowModal} : Props ) => {
         formData.append("nombre", data.nombre)
         formData.append("descripcion", data.descripcion)
         formData.append("fecha", new Date().toISOString())
-
         startAnalyze(formData)
     }
 

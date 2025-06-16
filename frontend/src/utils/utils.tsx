@@ -8,7 +8,8 @@ export const capitalize = (text: string) => {
 
 export const formatterDate = (parametro: string) => {
     const date = new Date(parametro)
-    const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC'  };
-    const formattedDate = new Intl.DateTimeFormat('es-ES', options).format(date);
-    return formattedDate
+    const resp = date.toLocaleString("es-PE", {
+        dateStyle: "medium"
+    })
+    return resp
 }
