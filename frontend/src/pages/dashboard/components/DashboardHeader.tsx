@@ -16,7 +16,7 @@ export const DashboardHeader = ({ showSidebar, setShowSidebar }: {
 
     if (!authUser) {
         return (
-            <div className="flex items-center justify-end px-8 h-[70px] border-1 border-t-0 border-e-0 border-s-0 border-b-zinc-700">
+            <div className="flex items-center justify-end px-4 md:px-6 h-[70px] border-1 border-t-0 border-e-0 border-s-0 border-b-zinc-700">
                 <div className="flex items-center justify-between gap-3">
 
                     <button
@@ -40,7 +40,7 @@ export const DashboardHeader = ({ showSidebar, setShowSidebar }: {
     }
 
     return (
-        <div className="flex items-center justify-between px-8 h-[70px]">
+        <div className="flex items-center justify-between px-4 md:px-6 h-[70px]">
             <div className="flex items-center gap-3">
                 <div onClick={() => setShowSidebar(prev => !prev)}
                     className="hidden md:flex cursor-pointer transition-transform duration-300 w-6 h-6 hover:bg-gray-600 md:items-center md:justify-center rounded-full" >

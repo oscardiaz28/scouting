@@ -164,7 +164,7 @@ export const VideoAnalysis = () => {
           <div className="bg-[#1A1C1E] p-4 px-5 rounded-md">
             <h3 className="text-xl font-bold mb-4 text-white">Atributos</h3>
 
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
               {/* left */}
               <div className="flex flex-col gap-2">
@@ -205,23 +205,38 @@ export const VideoAnalysis = () => {
           {/* radar chart */}
           <div className="bg-[#1A1C1E] p-6 rounded-md">
             <h1 className="text-xl font-bold text-white">Datos Obtenido</h1>
-            <div className="mt-5 grid grid-cols-2">
-              <div className="space-y-2 text-white/70 font-light">
-                <p className="">Goles:</p>
-                <p className="">Velocidad máxima:</p>
-                <p className="">Distancia recorrida:</p>
-                <p className="">Sprints:</p>
-                <p className="">Duelos ganados:</p>
-                <p className="">Asistencias:</p>
+            <div className="mt-5 grid grid-cols-1 gap-2">
+
+              <div className="flex items-center justify-between">
+                <p className="text-white/70 font-light flex-1">Goles:</p>
+                <p className="flex-1 text-right">{stats?.goles}</p>
               </div>
-              <div className="space-y-2">
-                <p>{stats?.goles}</p>
-                <p>{stats?.speed_max} km/h</p>
-                <p>{stats?.distancia_recorrida} km</p>
-                <p>{stats?.sprints}</p>
-                <p>{stats?.duelosGanados}</p>
-                <p>{stats?.asistencias}</p>
+
+              <div className="flex items-center justify-between">
+                <p className="text-white/70 font-light flex-1">Velocidad máxima:</p>
+                <p className="flex-1 text-right">{stats?.speed_max}</p>
               </div>
+
+              <div className="flex items-center justify-between">
+                <p className="text-white/70 font-light flex-1">Distancia recorrida:</p>
+                <p className="flex-1 text-right">{stats?.distancia_recorrida} km</p>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <p className="text-white/70 font-light flex-1">Sprints:</p>
+                <p className="flex-1 text-right">{stats?.sprints}</p>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <p className="text-white/70 font-light flex-1">Duelos ganados:</p>
+                <p className="flex-1 text-right">{stats?.duelosGanados}</p>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <p className="text-white/70 font-light flex-1">Asistencias:</p>
+                <p className="flex-1 text-right">{stats?.asistencias}</p>
+              </div>
+
             </div>
           </div>
 

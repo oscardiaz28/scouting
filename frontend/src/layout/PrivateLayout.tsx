@@ -20,7 +20,7 @@ export const PrivateLayout = () => {
         <div className="">
           <DashboardHeader showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
           <main className="bg-[#111311] mb-3">
-            <div className="px-8 ">
+            <div className="px-4 md:px-6">
               {<Outlet />}
             </div>
           </main>

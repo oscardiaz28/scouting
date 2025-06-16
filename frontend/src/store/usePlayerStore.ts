@@ -75,8 +75,7 @@ export const usePlayerStore = create<PlayerState>( (set, get) => ({
                 else return p
             })
             set({players: arr})
-            toast.success(response.data?.es_prospecto ? "Jugador marcado como prospecto" 
-                : "Jugador ya no es prospecto")
+            
         }catch(err: any){
             toast.error(err.response?.data?.message || "No se ha podido realizar la operación" )
         }

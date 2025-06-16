@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { usePlayerStore } from "../../store/usePlayerStore"
 import { capitalize } from "../../utils/utils"
 import { Modal } from "../../components/common/Modal"
-import { Pen, X } from "lucide-react"
+import { Pen, Plus, X } from "lucide-react"
 
 
 export default function PlayersPage() {
@@ -39,7 +39,10 @@ export default function PlayersPage() {
                 </div>
                 <button
                     onClick={() => setShowModal(true)}
-                    className="p-2 px-3 rounded-md bg-zinc-800 cursor-pointer">Registrar Jugador</button>
+                    className="p-2 px-3 rounded-md bg-zinc-800 cursor-pointer">
+                        <Plus className="block md:hidden" />
+                        <p className="hidden md:block">Registrar Jugador</p>
+                    </button>
             </div>
 
             {players.length > 0 ? (

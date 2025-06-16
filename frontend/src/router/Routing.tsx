@@ -56,8 +56,8 @@ export const Routing = () => {
                     </Route>
 
                 </Routes>      
-                <Toaster />
             </SidebarProvider>  
+            <Toaster />
         </BrowserRouter>
     )
 }
