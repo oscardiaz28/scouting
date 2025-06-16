@@ -52,7 +52,7 @@ export const DashboardHeader = ({ showSidebar, setShowSidebar }: {
             <div className="flex items-center gap-6">
                 <button 
                 onClick={() => setShowModal(true)}
-                className="bg-blue-600 p-2 rounded-full px-4 text-sm font-semibold cursor-pointer flex items-center gap-3">
+                className="bg-blue-600 p-2 rounded-full px-2 md:px-4 md:text-sm font-semibold cursor-pointer flex items-center gap-2 md:gap-3 text-xs">
                     <Upload className='w-5 h-5' />
                     <p>Subir Video</p>
                 </button>
@@ -62,7 +62,7 @@ export const DashboardHeader = ({ showSidebar, setShowSidebar }: {
                         setShowModal={setShowModal}
                     />
                 )}
-                <button className="">
+                <button className="hidden md:block">
                     <p>{authUser.username}</p>
                 </button>
                 <button onClick={() => logout()} className='cursor-pointer'>
