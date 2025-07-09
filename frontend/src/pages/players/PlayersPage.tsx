@@ -7,7 +7,7 @@ import { Pen, Plus, X } from "lucide-react"
 
 
 export default function PlayersPage() {
-    const { players, fetchAllPlayers, setPlayerAsProspecto, deletePlayer, selectedPlayer, setSelectedPlayer } = usePlayerStore()
+    const { players, fetchAllPlayers, isPlayersFetchLoading, setPlayerAsProspecto, deletePlayer, selectedPlayer, setSelectedPlayer } = usePlayerStore()
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
 
@@ -40,12 +40,15 @@ export default function PlayersPage() {
                 <button
                     onClick={() => setShowModal(true)}
                     className="p-2 px-3 rounded-md bg-zinc-800 cursor-pointer">
-                        <Plus className="block md:hidden" />
-                        <p className="hidden md:block">Registrar Jugador</p>
-                    </button>
+                    <Plus className="block md:hidden" />
+                    <p className="hidden md:block">Registrar Jugador</p>
+                </button>
             </div>
 
-            {players.length > 0 ? (
+            {isPlayersFetchLoading ? (
+                <p>Obteniendo Jugadores</p>
+
+            ) : players.length > 0 ? (
                 <div className="w-full overflow-y-auto scrollbar bg-[#1A1C1E] pb-5 rounded-md">
                     <table className="w-full table-auto border-collapse rounded-md overflow-hidden">
                         <thead className="bg-[#0f0e0e] rounded-md">
@@ -117,7 +120,7 @@ export default function PlayersPage() {
                 </div>
             ) : (
                 <p>No hay jugadores disponibles</p>
-            ) }
+            )}
 
         </div>
     )

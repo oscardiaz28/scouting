@@ -63,10 +63,12 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
 
     return (
         <>
-            <div className="absolute top-0 left-0 min-h-screen w-full bg-black/70 flex items-start justify-center p-8">
-                <div className="mt-10 modal-container max-w-2xl p-8 px-8 relative flex flex-col gap-6 z-50">
+            <div className="absolute top-0 left-0 h-screen w-full bg-black/70 flex justify-center p-8 overflow-auto ">
+                <div className="modal-container max-w-2xl p-8 px-8 relative flex flex-col gap-6 z-50">
                     <div className="flex items-center justify-between">
-                        <h1 className="font-bold text-2xl">Registrar Jugador</h1>
+                        <h1 className="font-bold text-2xl">
+                            { selectedPlayer === null ? "Registrar Jugador" : "Editar Jugador" }
+                        </h1>
                         <div className="cursor-pointer hover:bg-zinc-700 w-6 h-6 rounded-full flex items-center justify-center" onClick={handleClose}>
                             <X className="w-4" />
                         </div>

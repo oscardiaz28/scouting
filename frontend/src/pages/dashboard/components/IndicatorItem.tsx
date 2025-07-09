@@ -10,7 +10,7 @@ interface ItemProp{
 export const IndicatorItem = ( { item }: { item: ItemProp } ) => {
 
     return (
-        <div className=" p-4 px-5 flex items-start justify-between bg-[#1A1C1E] rounded-md">
+        <div className=" p-4 px-5 flex items-start justify-between bg-[#1E293B] border border-[#334155] rounded-md">
             <div className="flex flex-col items-start gap-2 h-full">
                 <div className="flex items-center gap-3">
                     {item.icon}

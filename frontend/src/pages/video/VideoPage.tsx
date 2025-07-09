@@ -1,4 +1,4 @@
-import { Search } from "lucide-react"
+import { Check, CircleX, Clock, Search } from "lucide-react"
 import { useVideoStore } from "../../store/useVideoStore"
 import { useEffect, useState } from "react"
 import { VideoList } from "./components/VideoList"
@@ -8,9 +8,9 @@ export const VideoPage = () => {
   const { videos, fetchVideos, isFetchingVideos } = useVideoStore()
   const [query, setQuery] = useState("")
 
-  const filteredArr = query 
-  ? videos.filter( video => video.playerId.nombre.toLowerCase().includes(query.toLowerCase()) )  
-  : videos
+  const filteredArr = query
+    ? videos.filter(video => video.playerId.nombre.toLowerCase().includes(query.toLowerCase()))
+    : videos
 
   useEffect(() => {
     fetchVideos()
@@ -33,19 +33,55 @@ export const VideoPage = () => {
 
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-
-        {isFetchingVideos ? (
+      {isFetchingVideos ? (
+        <div className="mt-8">
           <p>Obteniendo Videos...</p>
+        </div>
 
-        ) : videos.length > 0 ? (
-          <VideoList videos={filteredArr} />
-          
-        ) : (
-          <p>No hay videos disponibles.</p>
-        )}
+      ) : videos.length > 0 ? (
 
-      </div>
+        <>
+          {/* indicators */}
+          <div className="mt-6 flex flex-col gap-4 md:flex-row">
+            <div className="w-full bg-[#16A34A] text-white flex items-center justify-between rounded-lg p-6 px-8 border border-green-500">
+              <div className="flex flex-col items-start gap-1">
+                <p className="font-light">Completado</p>
+                <p className="text-2xl font-semibold">4</p>
+              </div>
+              <div>
+                <Check />
+              </div>
+            </div>
+            <div className="bg-[#CA8A04] text-white flex items-center justify-between rounded-lg p-6 px-8 border border-orange-500 w-full">
+              <div className="flex flex-col items-start gap-1">
+                <p className="font-light">Procesando</p>
+                <p className="text-2xl font-semibold">1</p>
+              </div>
+              <div>
+                <Clock />
+              </div>
+            </div>
+            <div className="bg-[#DC2626] text-white flex items-center justify-between rounded-lg p-6 px-8 border border-rose-500 w-full">
+              <div className="flex flex-col items-start gap-1">
+                <p className="font-light">Fallos</p>
+                <p className="text-2xl font-semibold">1</p>
+              </div>
+              <div>
+                <CircleX />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 mb-10">
+            <VideoList videos={filteredArr} />
+          </div>
+
+        </>
+
+      ) : (
+        <p>No hay videos disponibles.</p>
+      )}
+
     </div>
   )
 }

@@ -10,7 +10,7 @@ export const PrivateLayout = () => {
   const { authUser } = useAuthStore()
 
   return (
-    <div className="bg-[#111311] w-full flex h-screen overflow-hidden relative">
+    <div className="bg-[#020617] w-full flex h-screen overflow-hidden relative">
       {authUser && (
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} 
                 />
@@ -19,7 +19,7 @@ export const PrivateLayout = () => {
       <div className="flex-1 overflow-y-auto scrollbar">
         <div className="">
           <DashboardHeader showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-          <main className="bg-[#111311] mb-3">
+          <main className="bg-[#020617] mb-3">
             <div className="px-4 md:px-6">
               {<Outlet />}
             </div>

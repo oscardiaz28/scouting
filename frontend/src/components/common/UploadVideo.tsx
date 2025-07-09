@@ -54,94 +54,94 @@ export const UploadVideo = ( { setShowModal} : Props ) => {
         
         { (!analyzing ) && (
             <div className="absolute modal-overlay z-50">
-                <form onSubmit={handleSubmit(onSubmit)} className="modal-container max-w-lg p-6 px-8 relative flex flex-col gap-6">
+                    <form onSubmit={handleSubmit(onSubmit)} className="modal-container w-full max-w-lg p-6 px-8 relative flex flex-col gap-6">
 
-                    <div className="">
-                        <button type="button" onClick={ () => setShowModal(false) } className="absolute top-4 right-4" >
-                            <X className="w-5 h-5 cursor-pointer" />
-                        </button>
-                        <h2 className="flex items-center gap-2">
-                            <Upload className="w-5 h-5" />
-                            <span className="text-lg font-semibold">Analizar Video</span>
-                        </h2>
-                        <p className="text-sm text-gray-400 mt-1">Sube tu contenido de vídeo para un análisis inteligente</p>
-                    </div>
-
-                    <div className="">
-                        <h2 className="mb-3">Selecciona al jugador</h2>
-                        <div className="flex gap-2">
-                            <select 
-                            {...register('playerId', {required: "Selecciona un jugador"})}
-                            name="playerId" id="" className="flex-1 bg-[#070708] border-1 border-gray-700 appearance-none p-2 rounded-md text-base focus:outline-0 focus:border-1 focus:border-gray-700">
-                                <option value="">Selecciona a un jugador</option>
-                                {players.map( player => (
-                                    <option key={player._id} value={player._id}>
-                                        {player.nombre} {player.apellido}
-                                    </option>
-                                ) )}
-                            </select>
+                        <div className="">
+                            <button type="button" onClick={ () => setShowModal(false) } className="absolute top-4 right-4" >
+                                <X className="w-5 h-5 cursor-pointer" />
+                            </button>
+                            <h2 className="flex items-center gap-2">
+                                <Upload className="w-5 h-5" />
+                                <span className="text-lg font-semibold">Analizar Video</span>
+                            </h2>
+                            <p className="text-sm text-gray-400 mt-1">Sube tu contenido de vídeo para un análisis inteligente</p>
                         </div>
-                        {errors.playerId && 
-                            <span className="text-sm text-rose-500">{errors.playerId.message?.toString()}
-                            </span>}
-                    </div>
 
-                    <div className="">
-                        <h2 className="mb-3">Nombre del video</h2>
-                        <div className=" gap-2">
-                            <input 
-                            type="text"
-                            {...register('nombre', {required: "El nombre es requerido"})}
-                            name="nombre" id="nombre" 
-                            className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full "
-                            placeholder="Ingresa un nombre para el video" />
+                        <div className="">
+                            <h2 className="mb-3">Selecciona al jugador</h2>
+                            <div className="flex gap-2">
+                                <select 
+                                {...register('playerId', {required: "Selecciona un jugador"})}
+                                name="playerId" id="" className="flex-1 bg-[#070708] border-1 border-gray-700 appearance-none p-2 rounded-md text-base focus:outline-0 focus:border-1 focus:border-gray-700">
+                                    <option value="">Selecciona a un jugador</option>
+                                    {players.map( player => (
+                                        <option key={player._id} value={player._id}>
+                                            {player.nombre} {player.apellido}
+                                        </option>
+                                    ) )}
+                                </select>
+                            </div>
+                            {errors.playerId && 
+                                <span className="text-sm text-rose-500">{errors.playerId.message?.toString()}
+                                </span>}
                         </div>
-                        {errors.nombre && 
-                            <span className="text-sm text-rose-500">{errors.nombre.message?.toString()}
-                            </span>}
-                    </div>
 
-                    <div className="">
-                        <h2 className="mb-3">Descripcion del Video</h2>
-                        <div className=" gap-2">
-                            <textarea 
-                            {...register('descripcion', {required: "La descripción es obligatoria"})}
-                            name="descripcion" id="" 
-                            className="appearance-none border-1 border-gray-700 rounded-md p-3 focus:outline-0 focus:border-1 w-full min-h-[110px]"
-                            placeholder="Ingresa una descripcion para el video"></textarea>
+                        <div className="">
+                            <h2 className="mb-3">Nombre del video</h2>
+                            <div className=" gap-2">
+                                <input 
+                                type="text"
+                                {...register('nombre', {required: "El nombre es requerido"})}
+                                name="nombre" id="nombre" 
+                                className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full "
+                                placeholder="Ingresa un nombre para el video" />
+                            </div>
+                            {errors.nombre && 
+                                <span className="text-sm text-rose-500">{errors.nombre.message?.toString()}
+                                </span>}
                         </div>
-                        {errors.descripcion && 
-                            <span className="text-sm text-rose-500">{errors.descripcion.message?.toString()}
-                            </span>}
-                    </div>
 
-                    <div className="">
-                        <h2 className="mb-3">Subir Video</h2>
-                        <div className="2">
-                            <input 
-                            {...register("video", {required: "El video es requerido"})}
-                            name="video"
-                            type="file" className="appearance-none border-1 border-gray-700 rounded-md p-3 focus:outline-0 focus:border-1 w-full"
-                            placeholder="Ingresa una descripcion para el video" />
+                        <div className="">
+                            <h2 className="mb-3">Descripcion del Video</h2>
+                            <div className=" gap-2">
+                                <textarea 
+                                {...register('descripcion', {required: "La descripción es obligatoria"})}
+                                name="descripcion" id="" 
+                                className="appearance-none border-1 border-gray-700 rounded-md p-3 focus:outline-0 focus:border-1 w-full min-h-[110px]"
+                                placeholder="Ingresa una descripcion para el video"></textarea>
+                            </div>
+                            {errors.descripcion && 
+                                <span className="text-sm text-rose-500">{errors.descripcion.message?.toString()}
+                                </span>}
                         </div>
-                        {errors.video && 
-                            <span className="text-sm text-rose-500">{errors.video.message?.toString()}
-                            </span>}
-                    </div>
 
-                    <div className="flex justify-end gap-4">
-                        <button type="button" 
-                        className="flex bg-[#1A1C1E] items-center justify-center gap-2 rounded-md p-2 px-3 cursor-pointer"
-                        onClick={ () => setShowModal(false) }
-                        >Cancelar</button>
+                        <div className="">
+                            <h2 className="mb-3">Subir Video</h2>
+                            <div className="2">
+                                <input 
+                                {...register("video", {required: "El video es requerido"})}
+                                name="video"
+                                type="file" className="appearance-none border-1 border-gray-700 rounded-md p-3 focus:outline-0 focus:border-1 w-full"
+                                placeholder="Ingresa una descripcion para el video" />
+                            </div>
+                            {errors.video && 
+                                <span className="text-sm text-rose-500">{errors.video.message?.toString()}
+                                </span>}
+                        </div>
 
-                        <button type="submit"
-                        className="flex bg-emerald-700 items-center justify-center gap-2 rounded-md p-2 px-3 cursor-pointer hover:bg-emerald-600"
-                        
-                        >Analizar</button>
-                    </div>
+                        <div className="flex justify-end gap-4">
+                            <button type="button" 
+                            className="flex bg-[#1A1C1E] items-center justify-center gap-2 rounded-md p-2 px-3 cursor-pointer"
+                            onClick={ () => setShowModal(false) }
+                            >Cancelar</button>
 
-                </form>
+                            <button type="submit"
+                            className="flex bg-emerald-700 items-center justify-center gap-2 rounded-md p-2 px-3 cursor-pointer hover:bg-emerald-600"
+                            
+                            >Analizar</button>
+                        </div>
+
+                    </form>
             </div>
         ) }
 

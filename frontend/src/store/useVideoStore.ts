@@ -7,9 +7,10 @@ interface VideoStoreState{
     isFetchingVideos: boolean,
     videos: any[],
     fetchVideos: () => Promise<void>
+    // deleteVideo: (videoId: any) => Promise<void>
 }
 
-export const useVideoStore = create<VideoStoreState>( (set) => ({
+export const useVideoStore = create<VideoStoreState>( (set, get) => ({
     isFetchingVideos: true,
     videos: [],
 
@@ -23,5 +24,7 @@ export const useVideoStore = create<VideoStoreState>( (set) => ({
             set({isFetchingVideos: false})
         }
     },
+
+   
    
 }))

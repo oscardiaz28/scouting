@@ -46,7 +46,7 @@ interface PlayerState{
 export const usePlayerStore = create<PlayerState>( (set, get) => ({
     selectedPlayer: null,
     players: [],
-    isPlayersFetchLoading: false,
+    isPlayersFetchLoading: true,
     isAddingPlayer: false,
     isUpdatingPlayer: false,
     isDeletingPlayer: false,
@@ -101,7 +101,7 @@ export const usePlayerStore = create<PlayerState>( (set, get) => ({
             set({players: filteredList})
             toast.success("Jugador eliminado correctamente")
         }catch(err: any){
-            toast.success(err.response?.data?.message || "No se ha podido eliminar al jugador")
+            toast.error(err.response?.data?.message || "No se ha podido eliminar al jugador")
         }finally{
             set({isDeletingPlayer: false})
         }

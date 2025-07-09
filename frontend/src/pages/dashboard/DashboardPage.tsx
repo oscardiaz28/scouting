@@ -73,7 +73,7 @@ export const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="p-4 pt-0 w-full h-[400px] flex flex-col gap-5 bg-[#1A1C1E] rounded-md ">
+          <div className="p-4 pt-0 w-full h-[400px] flex flex-col gap-5 bg-[#1E293B] border border-[#334155] rounded-md ">
             <h2 className="pl-4 pt-4 font-bold text-xl">Habilidades Detectadas por la IA</h2>
             <ResponsiveContainer width="100%" height="90%">
               <BarChart data={data}>

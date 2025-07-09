@@ -65,7 +65,7 @@ const MobileNavbar = ( ) => {
     const {showMenu, setShowMenu} = useSidebarState()
 
     return (
-        <div className={`bg-[#141516] sahdow-md border-r border-gray-800 transition-all duration-400 overflow-hidden fixed top-0 left-0 h-full ${showMenu ? "w-64" : "w-0"} md:hidden md:w-0 z-50`}>
+        <div className={`bg-[#0F172A] sahdow-md border-r border-[#334155] transition-all duration-400 overflow-hidden fixed top-0 left-0 h-full ${showMenu ? "w-64" : "w-0"} md:hidden md:w-0 z-50`}>
             <div className="p-4 px-5">
                 <div className="flex items-center justify-between">
                     <Logo />
@@ -77,7 +77,7 @@ const MobileNavbar = ( ) => {
                 <div className="flex flex-col gap-4 mt-9">
 
                     {sidebarItems.map( item => (
-                        <Link key={item.id} to={item.path}  className={`${ isPathActive(pathname, item.path) ? "bg-[#272A30]" : ""} rounded-full p-2 px-4`} >
+                        <Link key={item.id} to={item.path}  className={`${ isPathActive(pathname, item.path) ? "bg-[#16A34A]" : ""} rounded-full p-2 px-4`} >
                             <div className="flex items-center gap-3">
                                 {item.icon}
                                 <p className="text-gray-200 text-sm font-semibold">{item.label}</p>
@@ -110,13 +110,13 @@ const DesktopNavbar = ( {showSidebar, setShowSidebar} : DesktopProps ) => {
     })
 
     return (
-        <div className={`${showSidebar ? "w-64" : "w-0" } bg-[#1A1C1E] border-r border-gray-800 transition-all duration-400 overflow-hidden hidden md:block `}>
+        <div className={`${showSidebar ? "w-64" : "w-0" } bg-[#0F172A] sahdow-md border-r border-[#334155] transition-all duration-400 overflow-hidden hidden md:block `}>
             <div className="p-4 px-5">
                 <Logo />
                 <div className="flex flex-col gap-4 mt-9">
 
                     {sidebarItems.map( item => (
-                        <Link key={item.id} to={item.path}  className={`${ isPathActive(pathname, item.path) ? "bg-[#272A30]" : ""} rounded-full p-2 px-4`} >
+                        <Link key={item.id} to={item.path}  className={`${ isPathActive(pathname, item.path) ? "bg-[#16A34A]" : ""} rounded-full p-2 px-4`} >
                             <div className="flex items-center gap-3">
                                 {item.icon}
                                 <p className="text-gray-200 text-sm font-semibold">{item.label}</p>
