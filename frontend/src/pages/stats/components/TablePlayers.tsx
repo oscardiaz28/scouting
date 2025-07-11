@@ -43,16 +43,16 @@ export const TablePlayers = () => {
             <div className="flex items-center justify-between mb-6">
                 <h2 className="font-bold text-xl">Top 5 Jugadores</h2>
                 <select onChange={handleSelect} name="" id="" className="border-1 border-[#3c3030] p-2 px-4 rounded-md appearance-none 
-            bg-[#0F0E0E] outline-0">
+            bg-[#060c27] outline-0">
                     <option value="goles">Goles</option>
                     <option value="asistencias">Asistencias</option>
                     <option value="regates">Regates</option>
                 </select>
             </div>
             <div className="overflow-auto rounded-lg shadow" >
-                <table className="min-w-full bg-[#1A1C1E]">
+                <table className="min-w-full bg-[#1E293B]">
                     <thead>
-                        <tr className="bg-[#0F0E0E] text-white uppercase text-sm leading-normal ">
+                        <tr className="bg-[#11152a] text-white uppercase text-sm leading-normal ">
                             <th className="py-3 px-6 text-left">Jugador</th>
                             <th className="py-3 px-6 text-center">Goles</th>
                             <th className="py-3 px-6 text-center">Asistencias</th>

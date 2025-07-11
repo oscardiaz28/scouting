@@ -57,7 +57,12 @@ export const uploadToCloudinary = (fileBuffer) => {
             },
             (error, result) => {
                 if (error) return reject(error)
-                resolve({ secure_url: result.secure_url, public_id: result.public_id })
+                resolve({ 
+                    secure_url: result.secure_url, 
+                    public_id: result.public_id,
+                    duration: result.duration,
+                    size_bytes: result.bytes
+                })
             }
         );
         /**

@@ -39,7 +39,7 @@ export default function PlayersPage() {
                 </div>
                 <button
                     onClick={() => setShowModal(true)}
-                    className="p-2 px-3 rounded-md bg-zinc-800 cursor-pointer">
+                    className="p-2 px-3 rounded-md bg-[#16A34A] cursor-pointer">
                     <Plus className="block md:hidden" />
                     <p className="hidden md:block">Registrar Jugador</p>
                 </button>
@@ -49,9 +49,9 @@ export default function PlayersPage() {
                 <p>Obteniendo Jugadores</p>
 
             ) : players.length > 0 ? (
-                <div className="w-full overflow-y-auto scrollbar bg-[#1A1C1E] pb-5 rounded-md">
+                <div className="w-full overflow-y-auto scrollbar bg-[#1E293B] pb-5 rounded-md">
                     <table className="w-full table-auto border-collapse rounded-md overflow-hidden">
-                        <thead className="bg-[#0f0e0e] rounded-md">
+                        <thead className="bg-[#11152a] rounded-md">
                             <tr className="">
                                 <th className="py-4 px-3"></th>
                                 <th className="py-4 px-3">Jugador</th>
@@ -68,8 +68,8 @@ export default function PlayersPage() {
                         <tbody>
                             {
                                 players.map((player, idx) => (
-                                    <tr key={idx} className="text-center border-b border-b-[#232323]
-                                    hover:bg-[#24282b]" >
+                                    <tr key={idx} className="text-center border-b border-b-[#334155df]
+                                    hover:bg-[#334155]" >
                                         <td className="py-4 px-3">{idx + 1}</td>
                                         <td className="py-4 px-3">
                                             <a href={`/dashboard/players/${player._id}`}

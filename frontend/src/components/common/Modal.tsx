@@ -94,7 +94,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                             minLength: { value: 8, message: "El DNI debe tener 8 dígitos" }
                                         })}
                                         type="text" placeholder="DNI" name="dni" id="dni"
-                                        className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
+                                        className="appearance-none bg-[#334155] border-1 border-gray-600 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
                                     />
                                     {errors.dni && <span className="text-sm text-rose-500">{errors.dni.message}</span>}
                                 </div>
@@ -103,7 +103,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <input
                                         {...register('nombre', { required: "El nombre es requerido" })}
                                         type="text" placeholder="Nombre" name="nombre" id="nombre"
-                                        className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
+                                        className="appearance-none bg-[#334155] border-1 border-gray-600 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
                                     />
                                     {errors.nombre && <span className="text-sm text-rose-500">{errors.nombre.message}</span>}
                                 </div>
@@ -112,7 +112,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <input
                                         {...register('apellido', { required: "El apellido es requerido" })}
                                         type="text" placeholder="Apellido" name="apellido" id="apellido"
-                                        className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
+                                        className="appearance-none bg-[#334155] border-1 border-gray-600 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
                                     />
                                     {errors.apellido && <span className="text-sm text-rose-500">{errors.apellido.message}</span>}
                                 </div>
@@ -121,7 +121,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <select
                                         {...register('posicion', { required: "Debes seleccionar una posición" })}
                                         name="posicion" id="posicion"
-                                        className="flex-1 bg-[#070708] border-1 border-gray-700 appearance-none p-2 rounded-md text-base focus:outline-0 focus:border-1 focus:border-gray-700">
+                                        className="flex-1 bg-[#070708] bg-[#334155] border-1 border-gray-600 appearance-none p-2 rounded-md text-base focus:outline-0 focus:border-1 focus:border-gray-700">
                                         <option value="">Selecciona la posición</option>
                                         <option value="delantero">Delantero</option>
                                         <option value="arquero">Arquero</option>
@@ -135,7 +135,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <input
                                         {...register('edad', { required: "La edad es requerida" })}
                                         type="number" placeholder="Edad" name="edad" id="edad"
-                                        className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
+                                        className="appearance-none bg-[#334155] border-1 border-gray-600 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
                                     />
                                     {errors.edad && <span className="text-sm text-rose-500">{errors.edad.message}</span>}
                                 </div>
@@ -144,7 +144,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <input
                                         {...register('partidos')}
                                         type="number" placeholder="Partidos" name="partidos" id="partidos"
-                                        className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
+                                        className="appearance-none bg-[#334155] border-1 border-gray-600 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
                                         min={0}
                                     />
                                     {errors.partidos && <span className="text-sm text-rose-500">{errors.partidos.message}</span>}
@@ -154,7 +154,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <input
                                         {...register('goles')}
                                         type="number" placeholder="Goles" name="goles" id="goles"
-                                        className="appearance-none border-1 border-gray-700 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
+                                        className="appearance-none bg-[#334155] border-1 border-gray-600 rounded-md p-2 px-3 focus:outline-0 focus:border-1 w-full"
                                         min={0}
                                     />
                                     {errors.goles && <span className="text-sm text-rose-500">{errors.goles.message}</span>}
@@ -164,7 +164,7 @@ export const Modal = ({ setShowModal, selectedPlayer }: ModalProps) => {
                                     <select
                                         {...register('pie_dominante', { required: "Debes seleccionar una opción" })}
                                         name="pie_dominante" id="pie_dominante"
-                                        className="flex-1 bg-[#070708] border-1 border-gray-700 appearance-none p-2 rounded-md text-base focus:outline-0 focus:border-1 focus:border-gray-700">
+                                        className="flex-1 bg-[#334155] border-1 border-gray-600 appearance-none p-2 rounded-md text-base focus:outline-0 focus:border-1 focus:border-gray-700">
                                         <option value="">Selecciona una opción</option>
                                         <option value="derecho">Derecho</option>
                                         <option value="izquierdo">Izquierdo</option>

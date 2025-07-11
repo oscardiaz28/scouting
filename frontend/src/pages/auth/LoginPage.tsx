@@ -20,7 +20,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className='min-h-screen bg-[#1C1C1C] grid lg:grid-cols-2'>
+    <div className='min-h-screen bg-[#020617] grid lg:grid-cols-2'>
 
       <div className='flex items-center justify-center p-6 sm:p-12'>
 

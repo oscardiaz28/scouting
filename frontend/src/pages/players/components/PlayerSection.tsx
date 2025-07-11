@@ -4,7 +4,7 @@ import { capitalize } from "../../../utils/utils"
 export const PlayerSection = ( {player} : {player : Player} ) => {
 
     return (
-        <div className='flex flex-col self-start items-center bg-[#1A1C1E] p-6 rounded-lg'>
+        <div className='flex flex-col self-start items-center bg-[#1E293B] p-6 rounded-lg'>
           <p className='mb-5 text-2xl font-bold'>{player.nombre} {player.apellido}</p>
           <img className='rounded-full w-full max-w-[140px] mx-auto' src="/images/default-avatar.jpg" alt="" />
           <div className="mt-7 grid grid-cols-2 w-full">

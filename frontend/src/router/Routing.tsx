@@ -17,6 +17,7 @@ import { ProtectedRoute } from "../lib/ProtectedRoute"
 import { useAuthStore } from "../store/useAuthStore"
 import { useEffect } from "react"
 import { Loader } from "lucide-react"
+import { ToastProvider } from "../context/ToastContext"
 
 export const Routing = () => {
 
@@ -36,28 +37,30 @@ export const Routing = () => {
 
     return (
         <BrowserRouter>
-            <SidebarProvider>
-                <Routes>
-                    <Route path="/" element={ <PublicRoute> <LandingPage /> </PublicRoute> } />
-                    <Route path="login" element={ <PublicRoute><LoginPage /></PublicRoute> } />
-                    <Route path="signup" element={ <PublicRoute><SignupPage /></PublicRoute>} />
+            <ToastProvider>
+                <SidebarProvider>
+                    <Routes>
+                        <Route path="/" element={ <PublicRoute> <LandingPage /> </PublicRoute> } />
+                        <Route path="login" element={ <PublicRoute><LoginPage /></PublicRoute> } />
+                        <Route path="signup" element={ <PublicRoute><SignupPage /></PublicRoute>} />
 
-                    <Route path="/dashboard" element={ <ProtectedRoute><PrivateLayout /></ProtectedRoute> }>
-                        <Route index element={ <DashboardPage /> } />    
-                        <Route path="videos" element={ <VideoPage /> } />
-                        <Route path="stats" element={<StatsPage />} />
-                        <Route path="players" element={<PlayersPage />} />
-                        <Route path="assistant" element={<AssistantPage />} />
-                    </Route>
+                        <Route path="/dashboard" element={ <ProtectedRoute><PrivateLayout /></ProtectedRoute> }>
+                            <Route index element={ <DashboardPage /> } />    
+                            <Route path="videos" element={ <VideoPage /> } />
+                            <Route path="stats" element={<StatsPage />} />
+                            <Route path="players" element={<PlayersPage />} />
+                            <Route path="assistant" element={<AssistantPage />} />
+                        </Route>
 
-                    <Route path="/dashboard" element={<PrivateLayout />}>
-                        <Route path="players/:id" element={<PlayerDetailPage />} />
-                        <Route path="videos/:id" element={<VideoAnalysis />} />
-                    </Route>
+                        <Route path="/dashboard" element={<PrivateLayout />}>
+                            <Route path="players/:id" element={<PlayerDetailPage />} />
+                            <Route path="videos/:id" element={<VideoAnalysis />} />
+                        </Route>
 
-                </Routes>      
-            </SidebarProvider>  
-            <Toaster />
+                    </Routes>      
+                </SidebarProvider>  
+                <Toaster />
+            </ToastProvider>
         </BrowserRouter>
     )
 }

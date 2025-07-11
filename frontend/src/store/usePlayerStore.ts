@@ -56,7 +56,6 @@ export const usePlayerStore = create<PlayerState>( (set, get) => ({
     },
 
     fetchAllPlayers: async () => {
-        set({isPlayersFetchLoading: true})
         try{
             const resp = await axiosInstance.get("/players")
             set({players: resp.data})

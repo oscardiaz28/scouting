@@ -1,15 +1,17 @@
-import { Check, CircleX, Clock, Search } from "lucide-react"
+import { Check, Search } from "lucide-react"
 import { useVideoStore } from "../../store/useVideoStore"
 import { useEffect, useState } from "react"
 import { VideoList } from "./components/VideoList"
 
 export const VideoPage = () => {
 
-  const { videos, fetchVideos, isFetchingVideos } = useVideoStore()
+  const { videos, fetchVideos, isFetchingVideos, indicators } = useVideoStore()
   const [query, setQuery] = useState("")
 
+  console.log(indicators)
+
   const filteredArr = query
-    ? videos.filter(video => video.playerId.nombre.toLowerCase().includes(query.toLowerCase()))
+    ? videos.filter(video => video.nombre.toLowerCase().includes(query.toLowerCase()))
     : videos
 
   useEffect(() => {
@@ -41,45 +43,46 @@ export const VideoPage = () => {
       ) : videos.length > 0 ? (
 
         <>
-          {/* indicators */}
           <div className="mt-6 flex flex-col gap-4 md:flex-row">
-            <div className="w-full bg-[#16A34A] text-white flex items-center justify-between rounded-lg p-6 px-8 border border-green-500">
-              <div className="flex flex-col items-start gap-1">
-                <p className="font-light">Completado</p>
-                <p className="text-2xl font-semibold">4</p>
+
+          {/* indicators */}
+          {indicators.map( (indicator, idx) => {
+            const names : any = {
+              completed: {
+                name: "Completado",
+                color: "border-green-500 bg-[#16A34A]"
+              },
+              pending: {
+                name: "Procesando",
+                color: "bg-[#CA8A04] border-orange-500"
+              },
+              failed: {
+                name: "Fallos",
+                color: "bg-[#DC2626] border-rose-500"
+              }
+            }
+            return (
+              <div key={idx} className={`w-full text-white flex items-center justify-between rounded-lg p-6 px-8 border ${names[indicator.state].color}`}>
+                <div className="flex flex-col items-start gap-1">
+                  <p className="font-light">{names[indicator.state].name}</p>
+                  <p className="text-2xl font-semibold">{indicator.count}</p>
+                </div>
+                <div>
+                  <Check />
+                </div>
               </div>
-              <div>
-                <Check />
-              </div>
-            </div>
-            <div className="bg-[#CA8A04] text-white flex items-center justify-between rounded-lg p-6 px-8 border border-orange-500 w-full">
-              <div className="flex flex-col items-start gap-1">
-                <p className="font-light">Procesando</p>
-                <p className="text-2xl font-semibold">1</p>
-              </div>
-              <div>
-                <Clock />
-              </div>
-            </div>
-            <div className="bg-[#DC2626] text-white flex items-center justify-between rounded-lg p-6 px-8 border border-rose-500 w-full">
-              <div className="flex flex-col items-start gap-1">
-                <p className="font-light">Fallos</p>
-                <p className="text-2xl font-semibold">1</p>
-              </div>
-              <div>
-                <CircleX />
-              </div>
-            </div>
+            )
+          } )}
           </div>
 
-          <div className="mt-8 mb-10">
+          <div className="mt-8 mb-10 flex flex-col gap-4">
             <VideoList videos={filteredArr} />
           </div>
 
         </>
 
       ) : (
-        <p>No hay videos disponibles.</p>
+        <p className="mt-8">No hay videos disponibles.</p>
       )}
 
     </div>

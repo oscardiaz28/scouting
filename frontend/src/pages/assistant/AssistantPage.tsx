@@ -51,12 +51,12 @@ export const AssistantPage = () => {
   return (
     <div className="grid grid-cols-1 relative md:grid-cols-[1fr_2fr] assistant-div gap-8 overflow-hidden rounded-2xl">
 
-      <div className='bg-[#1A1C1E] py-4 px-5 rounded-2xl'>
+      <div className='bg-[#1E293B] py-4 px-5 rounded-2xl'>
         <h2 className='absolute top-4 left-6 text-xl font-bold'>Asistente IA</h2>
 
         <div className='h-full flex justify-center flex-col'>
           <p className='text-center font-bold text-xl mb-6'>¿En qué puedo ayudarte?</p>
-          <form action="" onSubmit={handleSubmit} className='bg-[#111311] rounded-2xl p-4 py-2 pt-4 flex flex-col'>
+          <form action="" onSubmit={handleSubmit} className='bg-[#334155] border border-gray-600 rounded-2xl p-4 py-2 pt-4 flex flex-col'>
             <div className='flex-1'>
               <textarea placeholder='Ingresa tu pregunta' value={question} onChange={(e) => setQuestion(e.target.value) } className='w-full h-[55px] resize-none outline-0 scrollbar'
                 onKeyDown={ (e) => {
@@ -67,7 +67,7 @@ export const AssistantPage = () => {
                 }}
                 />
             </div>
-            <button type='submit' className='w-11 h-11 flex items-center justify-center ml-auto cursor-pointer rounded-full hover:bg-[#1A1C1E]'>
+            <button type='submit' className='w-11 h-11 flex items-center justify-center ml-auto cursor-pointer rounded-full hover:bg-[#212a39] text-emerald-500'>
               <Send className='w-5 h-5' />
             </button>
           </form>

@@ -4,7 +4,7 @@ import { Video } from "../models/video.model.js"
 export const dashboardData = async (req, res) => {
     const {user} = req
     try {
-        const videos = await Video.find({userId: user._id})
+        const videos = await Video.find({userId: user._id, is_analyzed: "completed"})
         const registeredPlayers = await Player.find({userId: user._id})
         const prospectPlayers = await Player.find({ es_prospecto: true, userId: user._id })
         const activePlayers = await Player.find({ activo: true, userId: user._id })

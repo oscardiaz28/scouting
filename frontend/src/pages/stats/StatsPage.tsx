@@ -247,7 +247,7 @@ export default function StatsPage() {
 
             </div>
 
-            <div className="col-span-1 md:col-span-2 bg-[#1A1C1E] pb-4 p-5 rounded-md">
+            <div className="col-span-1 md:col-span-2 bg-[#0e1121] pb-4 p-5 rounded-md">
                 <TablePlayers />
             </div>
 
