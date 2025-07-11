@@ -1,5 +1,5 @@
 import { formatterBytes, formatterDate, formatterDuration } from "../../../utils/utils"
-import { ArrowLeft, ChartColumnDecreasing, CircleCheckBig, CircleX, Clock, Play, RefreshCcw, RefreshCw, Target, Timer, Users, Zap } from "lucide-react"
+import { ChartColumnDecreasing, CircleCheckBig, CircleX, Clock, Play, RefreshCcw, RefreshCw, Target, Timer, Users, Zap } from "lucide-react"
 import { MouseEventHandler, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { SwipeItem } from "./SwipeItem"
