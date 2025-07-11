@@ -61,8 +61,9 @@ export const UploadVideo = ({ setShowModal }: Props) => {
             const url = `/dashboard/videos/${videoId}`
             navigate(url)
         } catch (err) {
-            toast.error("No se ha podido subir el video")
+            toast.error("No se ha podido subir el video, intentar mas tarde")
         } finally {
+            setShowModal(false)
             setAnalyzing(false)
         }
     }
@@ -140,7 +141,7 @@ export const UploadVideo = ({ setShowModal }: Props) => {
                                 <div className="w-[9px] h-[9px] rounded-full bg-[#22C55E] mt-2"></div>
                                 <div className="">
                                     <p className="font-semibold">Calidad de Vídeo</p>
-                                    <p className="text-white/60 text-sm">Resolución minima de 720p para un seguimiento preciso del jugador</p>
+                                    <p className="text-white/60 text-sm">Resolución minima de 480p para un seguimiento preciso del jugador</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">

@@ -93,6 +93,8 @@ export const addVideo = async (req, res) => {
         const videoSaved = await video.save();
 
         if(generateErrorInAnalyzis){
+            video.is_analyzed = "failed"
+            await video.save()
             return res.status(500).json({message: "No se ha podido realizar el analisis del video, intentar mas tarde"})
         }
 
@@ -251,4 +253,28 @@ export const retryAnalysis = async (req, res) => {
         console.log(`Error in retry controller: ${err.message}`)
         res.status(500).json({message: "No se ha podido realizar la operacion"})
     }
+}
+
+
+export const deleteVideo = async (req, res) => {
+    const {id} = req.params
+    try{
+
+        const video = await Video.findById(id)
+        if(!video){
+            return res.status(400).json({message: "Video no encontrado"})
+        }
+        const stat = await Stat.findOne({videoId: id})
+        if(stat){
+            await stat.deleteOne();
+        }
+        await video.deleteOne();
+
+        res.json({message: "Video eliminado correctamente"})
+
+    }catch(err){
+        console.log(`Error in deleteVideo `)
+        res.status(500).json({message: "No se ha podido eliminar el video"})
+    }
+
 }

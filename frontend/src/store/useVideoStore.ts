@@ -8,10 +8,10 @@ interface VideoStoreState{
     videos: any[],
     indicators: any[]
     fetchVideos: () => Promise<void>
-    // deleteVideo: (videoId: any) => Promise<void>
+    deleteVideo: (videoId: string) => Promise<void>
 }
 
-export const useVideoStore = create<VideoStoreState>( (set) => ({
+export const useVideoStore = create<VideoStoreState>( (set, get) => ({
     isFetchingVideos: true,
     videos: [],
     indicators: [],
@@ -44,6 +44,28 @@ export const useVideoStore = create<VideoStoreState>( (set) => ({
         }
     },
 
-   
+    deleteVideo: async (videoId: string) => {
+        const {videos} = get()
+        await axiosInstance.delete(`/videos/${videoId}`)
+
+        const filteredList = videos.filter( video => video._id !== videoId )
+
+        const allStates = ["completed", "pending", "failed"]
+        const counts = allStates.reduce((acc: any, state) => {
+            acc[state] = 0;
+            return acc;
+        }, {});
+        for (const item of filteredList) {
+            const state = item.is_analyzed;
+            if (counts.hasOwnProperty(state)) {
+                counts[state]++;
+            }
+        }
+        const result = Object.entries(counts).map(([state, count]) => ({ state, count }));
+
+        set({indicators: result})
+
+        set({videos: filteredList})
+    }
    
 }))

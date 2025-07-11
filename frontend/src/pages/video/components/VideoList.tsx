@@ -1,17 +1,28 @@
 import { formatterBytes, formatterDate, formatterDuration } from "../../../utils/utils"
-import { ChartColumnDecreasing, CircleCheckBig, CircleX, Clock, Play, RefreshCcw, RefreshCw, Target, Timer, Users, Zap } from "lucide-react"
+import { ArrowLeft, ChartColumnDecreasing, CircleCheckBig, CircleX, Clock, Play, RefreshCcw, RefreshCw, Target, Timer, Users, Zap } from "lucide-react"
 import { MouseEventHandler, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { SwipeItem } from "./SwipeItem"
 import { axiosInstance } from "../../../lib/axios"
 import toast from "react-hot-toast"
+import { useVideoStore } from "../../../store/useVideoStore"
+import { useToast } from "../../../context/ToastContext"
 
 export const VideoList = ({ videos }: { videos: any }) => {
 
-    const handleDeleteVideo: MouseEventHandler<HTMLButtonElement> | undefined = (videoId: any) => {
+    const {deleteVideo} = useVideoStore()
+    const { showToast } = useToast()
+
+    const handleDeleteVideo: MouseEventHandler<HTMLButtonElement> | undefined = async (videoId: any) => {
         const result = confirm("¿Estas seguro de eliminar el video? ")
         if (result) {
-            console.log(videoId)
+            try{
+                await deleteVideo(videoId)
+                showToast("Video eliminado correctamente", "success")
+            }catch(err: any){
+                const {message} = err?.response?.data
+                showToast(message, "error")
+            }
         }
     }
     const [showModal, setShowModal] = useState(false)
@@ -54,7 +65,7 @@ export const VideoList = ({ videos }: { videos: any }) => {
                 </div>
             )}
             <SwipeItem key={idx} onDelete={() => handleDeleteVideo(video._id)}>
-                <div key={video._id} className="rounded-md border-1 order border-[#334155] shadow-md p-7 px-8 bg-[#1E293B]">
+                <div key={video._id} className="rounded-md border-1 order border-[#334155] shadow-md p-7 px-8 bg-[#1E293B] relative">
 
                     {/* <video src={video.videoId.url_video} ></video> */}
                     <div className="flex items-center justify-between gap-5">

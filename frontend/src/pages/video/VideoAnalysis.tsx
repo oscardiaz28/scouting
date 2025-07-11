@@ -172,9 +172,8 @@ export const VideoAnalysis = () => {
 
           {/* video */}
           <div className="overflow-hidden rounded-lg border border-gray-800">
-            <video src="/videos/train.mp4" muted={true} controls className="w-full"></video>
+            <video src={data.url_video} muted={false} controls className="w-full"></video>
           </div>
-          
 
           { data.stats.length !== 0 && (
             <>

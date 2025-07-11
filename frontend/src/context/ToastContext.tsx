@@ -41,7 +41,6 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
                             } relative`}
                     >   
                         <div className="flex flex-col gap-2">
-                            <p className="text-sm font-semibold">Error al subir el archivo</p>
                             <p className="text-white/80">{toast.message}</p>
                         </div>
                         <button
