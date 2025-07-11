@@ -11,7 +11,7 @@ interface VideoStoreState{
     // deleteVideo: (videoId: any) => Promise<void>
 }
 
-export const useVideoStore = create<VideoStoreState>( (set, get) => ({
+export const useVideoStore = create<VideoStoreState>( (set) => ({
     isFetchingVideos: true,
     videos: [],
     indicators: [],
